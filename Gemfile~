@@ -29,6 +29,7 @@ group :development, :test do
 	gem 'rspec'
 	gem 'webrat'
 	gem 'autotest'
+	gem 'redgreen'
 
 end
 
