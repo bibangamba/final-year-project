@@ -13,6 +13,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    ZenTest (4.9.5)
     actionmailer (4.0.0)
       actionpack (= 4.0.0)
       mail (~> 2.5.3)
@@ -39,6 +40,8 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.2)
     atomic (1.1.14)
+    autotest (4.4.6)
+      ZenTest (>= 4.4.1)
     bcrypt-ruby (3.0.1)
     builder (3.1.4)
     capistrano (3.1.0)
@@ -185,6 +188,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autotest
   bcrypt-ruby (~> 3.0.0)
   capistrano
   coffee-rails (~> 4.0.0)
