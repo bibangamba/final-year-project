@@ -13,7 +13,7 @@ group :production do
   gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 end        
 
-group :development, :test do
+group :development do
 
 #install sqlite gem
 	gem 'sqlite3-ruby', '1.3.3'
@@ -26,8 +26,12 @@ group :development, :test do
 	
 #RSpec for testing
 	gem 'rspec-rails'
+end
+
+group :test do
 	gem 'rspec'
 	gem 'webrat'
+	gem 'autotest'
 end
 
 group :doc do
