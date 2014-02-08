@@ -30,7 +30,6 @@ group :development, :test do
 	gem 'webrat'
 	gem 'autotest'
 	gem 'redgreen'
-	gem 'test-unit'
 
 end
 
