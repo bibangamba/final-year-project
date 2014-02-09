@@ -36,14 +36,25 @@ describe PagesController do
 			response.should have_selector("title", :content => " | About")
     end
 	end
+<<<<<<< HEAD
+=======
+
+>>>>>>> staticPages
   describe "GET 'help'" do
 		it "should be successful" do
 			get 'help'
 			response.should be_success
 		end
+<<<<<<< HEAD
 #    it "should have the right title" do
 #			get 'help'
 #			response.should have_selector("title", :content => " | Help")
 #    end
+=======
+    it "should have the right title" do
+			get 'help'
+			response.should have_selector("title", :content => " | Help")
+    end
+>>>>>>> staticPages
 	end
 end
