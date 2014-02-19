@@ -1,8 +1,21 @@
 StaticDynamic::Application.routes.draw do
+  
+  get "users/new"
+  
   get "pages/home"
   get "pages/contact"
   get "pages/about"
   get "pages/help"
+
+  get '/signup', :to => 'users#new'
+  
+  get '/contact', :to => 'pages#contact'	#book says to use 'match' in place of get 
+	get '/about', :to => 'pages#about'	#but troubleshooting(integration tests))say 
+	get '/help', :to => 'pages#help'	#use 'get' so...
+	
+	root :to => 'pages#home'
+  
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
