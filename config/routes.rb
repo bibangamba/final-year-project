@@ -1,6 +1,9 @@
 StaticDynamic::Application.routes.draw do
-  
-  get "users/new"
+
+	#allows REST-like urls for users to work
+	resources :users
+	  
+  #get "users/new" #no longer needed since the resources line above automatically adds these paths(is RESTful Users resource)
   
   get "pages/home"
   get "pages/contact"

@@ -26,12 +26,18 @@ group :development do
 	
 #RSpec for testing
 	gem 'rspec-rails'
+#adds comments of the actual model to our model.rb file
+	#gem 'annotate-models' this doesn't work..
+	gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+#allows use of 'attr_accessible' in model file(e.g ./app/models/user.rb)
+	gem 'protected_attributes'
 end
 
 group :test do
 	gem 'rspec'
 	gem 'webrat'
 	gem 'autotest'
+	gem 'protected_attributes'
 end
 
 group :doc do

@@ -1,6 +1,9 @@
 StaticDynamic::Application.routes.draw do
-  
-  get "users/new"
+
+	#allows REST-like urls for users to work
+	resources :users
+	  
+  #get "users/new" #no longer needed since the resources line above automatically adds these paths(is RESTful)
   
   get "pages/home"
   get "pages/contact"
@@ -8,6 +11,7 @@ StaticDynamic::Application.routes.draw do
   get "pages/help"
 
   get '/signup', :to => 'users#new'
+  
   get '/contact', :to => 'pages#contact'	#book says to use 'match' in place of get 
 	get '/about', :to => 'pages#about'	#but troubleshooting(integration tests))say 
 	get '/help', :to => 'pages#help'	#use 'get' so...
