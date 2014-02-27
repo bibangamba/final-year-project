@@ -31,6 +31,8 @@ group :development do
 	gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 #allows use of 'attr_accessible' in model file(e.g ./app/models/user.rb)
 	gem 'protected_attributes'
+#allows creation of fake users and somewhat acceptible emails	
+	gem 'faker'
 end
 
 group :test do
@@ -38,11 +40,18 @@ group :test do
 	gem 'webrat'
 	gem 'autotest'
 	gem 'protected_attributes'
+#factories gem tht helpsin testing by providing a sample user for testing on(Rspec)
+	gem 'factory_girl_rails'
 end
 
 group :doc do
   gem 'sdoc', require: false
 end
+
+gem 'will_paginate'
+
+#gravatar-globally recognized avatar
+gem 'gravatar_image_tag'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
