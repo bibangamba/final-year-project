@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 	end
 	
 	def self.authenticate(email, submitted_password)#self in this case is the class User
-		#if its inside the method, it'd be referring to the object of a class, i.e a user[find_by_email is in active_record]
+		#if its inside the method, it'd be referring to an instance of the class, i.e a user[find_by_email is in active_record]
 		user = find_by_email(email)
 		return nil if user.nil?
 		return user if user.has_password?(submitted_password)
