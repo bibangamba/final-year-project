@@ -51,6 +51,11 @@ class User < ActiveRecord::Base
 		return user if user.has_password?(submitted_password)
 	end
 	
+	def self.authenticate_with_salt(id, cookie_salt)
+		user = find_by_id(id)
+		(user && user.salt == cookie_salt) ? user : nil
+	end
+	
 	private
 
 #self is not optional when assigning an attr(self.encry...)however when u call an attribute, its presence is optional[(pass..)]

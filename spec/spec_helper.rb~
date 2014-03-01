@@ -41,7 +41,6 @@ RSpec.configure do |config|
   config.order = "random"
   
   
-  #mthd we'll use to test signing out, we need a signed in user to sign out hence the addition of this mthd
   def test_sign_in(user)
 		controller.sign_in(user)
 	end
