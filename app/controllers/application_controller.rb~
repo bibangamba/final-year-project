@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 #its a modeule that is part of the sessions controller we created.
-#we include it in here so we can use its functions(described in it) in controllers. by default, all helpers are available in
-# the views but not in the controllers
+#we include it in here so we can use its functions(described in it) in controllers.
   include SessionsHelper
   
 end
