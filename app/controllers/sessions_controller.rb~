@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   	@title = "Sign in"
   end
   
+	#the action is create coz we are creating a session(signing-in)
   def create
   	user = User.authenticate(params[:session][:email],params[:session][:password])
 		
@@ -20,7 +21,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-	sign_out
+		sign_out
 		redirect_to root_path
   end
   
