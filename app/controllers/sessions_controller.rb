@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   	@title = "Sign in"
   end
   
+	#the action is create coz we are creating a session(signing-in)
   def create
   	user = User.authenticate(params[:session][:email],params[:session][:password])
 		
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
   		
   	else
   		sign_in user
-			redirect_to user
+			redirect_back_or user
   	end
   end
   

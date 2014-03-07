@@ -166,3 +166,11 @@ margin-bottom: 10px;
 	font-size: 12px;
 	list-style: square;
 	}
+
+	/*all users list*/
+ul.users {
+	margin-top: 1em;
+	}
+.users li {
+	list-style: none;
+	}
