@@ -2,29 +2,15 @@
 
 FactoryGirl.define do
 	factory :user do
-<<<<<<< HEAD
-		name 									"yuri"
-		email 								"zahard@TOG.com"
-		password 							"hazahard"
-		password_confirmation "hazahard"
-	end
-=======
 		name "bibangamba"
-		email "bibangamba@zahard.com"
-		password "hazahard"
-		password_confirmation "hazahard"
+		email "bibangamba@gmail.com"
+		password "yurizahard"
+		password_confirmation "yurizahard"
 	end
 	
 
 		sequence :email do |n|
 			"person-#{n}@example.com"
 		end
-	factory :user do
-		name "bibangamba"
-		email {FactoryGirl.generate(:email)}
-		password "hazahard"
-		password_confirmation "hazahard"
-	end
-		
 >>>>>>> updating-users
 end

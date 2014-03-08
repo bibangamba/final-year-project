@@ -311,7 +311,7 @@ describe UsersController do
 	
 			describe "as an admin user" do
 				before(:each) do
-					admin = FactoryGirl.create(:user, :email => "admin@example.com", :admin => true)
+					admin = FactoryGirl.create(:user, :email =>  "admin@example.com", :admin => true)
 					test_sign_in(admin)
 				end
 	
@@ -325,6 +325,27 @@ describe UsersController do
 				delete :destroy, :id => @user
 				response.should redirect_to(users_path)
 			end
+			
+			#won't have to create another admin, we already have one from the parent describe
+			describe "prevent an admin from deleting themselves" do
+				before(:each) do
+					@admin = FactoryGirl.create(:user, :email =>  "admin@example2.com", :admin => true)
+					test_sign_in(@admin)
+				end
+				
+				it "should not delete the admin user" do
+					lambda do
+						delete :destroy, :id => admin
+					end.should_not change(User, :count)
+				end
+			
+				it "should redirect the admin to the users page" do
+					delete :destroy, :id => admin
+					flash[:notice].should =~ /delete/
+					response.should redirect_to(users_path)
+				end
+			end
+			
 		end
 	end
 end

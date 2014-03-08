@@ -2,7 +2,7 @@ module SessionsHelper
 
 	def sign_in(user)
 		cookies.permanent.signed[:remember_token] = [user.id, user.salt]
-		current_user = user #might have to use self.current_user
+		current_user = user #might have to use self.current_user on other systems
 		#[permanent=20.years.from_now(according to rails), signed=secure(tells browser not to show user id )]
 	end
 	
@@ -20,7 +20,7 @@ module SessionsHelper
 	end
 	
 
-			#redirect users that try to access update & edit actions without signing in
+			#redirect(to the page) a user tried to access signing in
 		def deny_access
 			store_location
 			redirect_to signin_path, :notice => "Please sign in to access this page."

@@ -3,10 +3,12 @@ class UsersController < ApplicationController
 	#before_filter goes through the authenticate mthd before
 	#calling the actions specified
 	#also, by default b4_filter applies to all actions in the controller, ':only' restricts it to those specified.
-	#:authenticate->must be signed in, :correct_user->must be the current user, :admin_user-> must be an admin
+	#:authenticate->must be signed in, :correct_user->must be the current user, :admin_user-> must be an admin, 
+	#:not_signed_in->must be signed out to access, :
 	before_filter :authenticate, :only =>[:index, :edit, :update, :destroy]
 	before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
+  before_filter :not_signed_in, :only => [:new, :create]
   
   def index
 		@title = "All users"
@@ -61,9 +63,15 @@ class UsersController < ApplicationController
 	end
 	
 	def destroy
-		User.find(params[:id]).destroy
-		flash[:success] = "User deleted!"
-		redirect_to users_path
+		@user = User.find(params[:id])
+		if @user.admin? && current_user?(@user)
+			flash[:notice] = "You cannot delete yourself!"
+			redirect_to users_path
+		else
+			@user.destroy
+			flash[:success] = "User deleted!"
+			redirect_to users_path
+		end
 	end
 
 	
@@ -80,7 +88,19 @@ class UsersController < ApplicationController
 		end
 		
 		def admin_user
-		redirect_to(root_path) unless current_user.admin?
+			redirect_to(root_path) unless current_user.admin?
+		#	@admin = User.find(params[:id])
+		#	if @admin == current_user.admin?
+		#		flash[:notice] = "You can not delete yourself!"
+		#		redirect_to(users_path)
+		#	else
+		#	return
+		#	end
+		end
+		
+		def not_signed_in
+			flash[:notice] = "You are already a registered user. Please sign out to register another user!"
+			redirect_to(root_path) unless !signed_in?
 		end
 		
 end
