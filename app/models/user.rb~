@@ -23,6 +23,9 @@ class User < ActiveRecord::Base
 
 	attr_accessible :name, :email, :password, :password_confirmation
 	
+	has_many :microposts, :dependent => :destroy
+	#:dependent option deletes all microposts associated with the destroyed user
+	
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	
 	#both methods for validating presence are fine.
@@ -53,8 +56,10 @@ class User < ActiveRecord::Base
 	
 	def self.authenticate_with_salt(id, cookie_salt)
 		user = find_by_id(id)
-	(user && user.salt == cookie_salt) ? user : nil
+		(user && user.salt == cookie_salt) ? user : nil
 	end
+	
+	#micropost feed method
 	
 	private
 

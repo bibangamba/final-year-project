@@ -18,7 +18,6 @@ StaticDynamic::Application.routes.draw do
   get '/signup', :to => 'users#new'
 	get '/signin', :to => 'sessions#new'
 	get '/signout', :to => 'sessions#destroy' 
-
   
   get '/contact', :to => 'pages#contact'	#book says to use 'match' in place of get 
 	get '/about', :to => 'pages#about'	#but troubleshooting(integration tests))say 

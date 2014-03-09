@@ -8,9 +8,12 @@ FactoryGirl.define do
 		password_confirmation "yurizahard"
 	end
 	
-
-		sequence :email do |n|
-			"person-#{n}@example.com"
-		end
->>>>>>> updating-users
+	sequence :email do |n|
+		"person-#{n}@example.com"
+	end
+	
+	factory :micropost do |micropost|
+		micropost.content "foo bar(what's with this guy's obsession with foobar?)"
+		micropost.association :user
+	end
 end

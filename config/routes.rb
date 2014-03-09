@@ -4,7 +4,7 @@ StaticDynamic::Application.routes.draw do
 	#allows REST-like urls for users to work
 	resources :users
 	resources :sessions, :only => [:new, :create, :destroy]
-
+	resources :microposts, :only => [:create, :destroy]
 	  
 	  
 	  

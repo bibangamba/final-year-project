@@ -1,5 +1,6 @@
 module SessionsHelper
-
+#sessions helper is accessible to all controllers coz its included in the application controller
+	
 	def sign_in(user)
 		cookies.permanent.signed[:remember_token] = [user.id, user.salt]
 		current_user = user #might have to use self.current_user on other systems
@@ -18,7 +19,10 @@ module SessionsHelper
 		cookies.delete(:remember_token)
 		current_user = nil
 	end
-	
+			
+	def authenticate
+		deny_access unless signed_in?
+	end
 
 			#redirect(to the page) a user tried to access signing in
 		def deny_access
