@@ -26,6 +26,18 @@ class User < ActiveRecord::Base
 	has_many :microposts, :dependent => :destroy
 	#:dependent option deletes all microposts associated with the destroyed user
 	
+	#specifying the foreign key since rails can't infer
+	has_many :relationships,  :foreign_key => "follower_id",
+														:dependent => :destroy
+	has_many :following, :through => :relationships, :source => :followed
+	
+	#the reverse relationship
+	#we include the class coz rails would otherwise look for ReverseRelationship class that doesn't exist
+	has_many :reverse_relationships, :foreign_key => "followed_id",
+																	 :class_name => "Relationship",
+																	 :dependent => :destroy
+has_many :followers, :through => :reverse_relationships, :source => :follower
+	
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	
 	#both methods for validating presence are fine.
@@ -59,7 +71,27 @@ class User < ActiveRecord::Base
 		(user && user.salt == cookie_salt) ? user : nil
 	end
 	
+	#following boolean mthd to check if a user is being followed
+	#in the case of '.._id(followed)'=> the '.id' can be removed but if it breaks, add it
+	def following?(followed)
+		relationships.find_by_followed_id(followed)
+	end
+	
+	#creates a relationship and shows exceptions
+	#in this case, followed alone breaks so we add '.id'
+	def follow!(followed)
+		relationships.create!(:followed_id => followed.id)
+	end
+	
+	def unfollow!(followed)
+		relationships.find_by_followed_id(followed).destroy
+	end
+	
 	#micropost feed method
+	def feed
+		def feed
+			Micropost.from_users_followed_by(self)
+	end
 	
 	private
 

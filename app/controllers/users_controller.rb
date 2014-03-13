@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	#also, by default b4_filter applies to all actions in the controller, ':only' restricts it to those specified.
 	#:authenticate->must be signed in, :correct_user->must be the current user, :admin_user-> must be an admin, 
 	#:not_signed_in->must be signed out to access, :
-	before_filter :authenticate, :only =>[:index, :edit, :update, :destroy]
+	before_filter :authenticate, :except =>[:show, :new, :create]
 	before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
   before_filter :not_signed_in, :only => [:new, :create]
@@ -74,7 +74,22 @@ class UsersController < ApplicationController
 			redirect_to users_path
 		end
 	end
+	
+	#following & followers actions
+	def following
+		@title = "Following"
+		@user = User.find(params[:id])
+		@users = @user.following.paginate(:page => params[:page])
+		render 'show_follow'
+	end
 
+	def followers
+		@title = "Followers"
+		@user = User.find(params[:id])
+		@users = @user.followers.paginate(:page => params[:page])
+		render 'show_follow'
+	end#following & followers actions
+	
 	
 	private
 		

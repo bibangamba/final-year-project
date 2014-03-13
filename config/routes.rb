@@ -1,11 +1,17 @@
 StaticDynamic::Application.routes.draw do
 
   get "sessions/new"
-	#allows REST-like urls for users to work
-	resources :users
+	#allows REST-like urls for users to work(create, new, destroy etc actions)
+	resources :users do
+	#members allows a users/:id/following||followers sort of route
+	#collection(in place of members) allows for users/:collection_get_page(e.g following for the members case) i.e w/ out an :id
+		member do
+			get :following, :followers
+		end
+	end
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :microposts, :only => [:create, :destroy]
-	  
+	resources :relationships, :only => [:create, :destroy]  
 	  
 	  
   #get "users/new" #no longer needed since the resources line above automatically adds these paths(is RESTful Users resource)
