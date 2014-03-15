@@ -6,8 +6,8 @@ namespace :db do
 
 		Rake::Task['db:reset'].invoke
 			make_users
-			make_microposts
-			make_relationships
+			#make_microposts
+			#make_relationships
 		end
 		
 		def make_users
@@ -20,10 +20,12 @@ namespace :db do
 				admin.toggle!(:admin)#changing field admin from false to true
 			
 			#creates other non admin users(99 in total)
-			99.times do |n|
+			1.times do |n|
+			#99.times do |n|
 				name = Faker::Name.name
-				email = "example-#{n+1}@railstutorial.org"
-				password = "password"
+				email = "andrewbibangamba@yahoo.com"
+				#email = "example-#{n+1}@railstutorial.org"
+				password = "25THbaam"
 	
 				User.create!(:name => name,
 					:email => email,

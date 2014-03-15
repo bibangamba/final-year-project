@@ -6,7 +6,6 @@ gem 'rails', '4.0.0'
 #	Use PostgreSQL for production since heroku uses it.
 group :production do
   gem 'pg'
-  gem 'unicorn' # make sure you follow installation instructions for this gem
   gem 'rails_12factor'
 #following below are added for serving static assets into the app
   gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
@@ -18,8 +17,6 @@ group :development do
 #install sqlite gem
 	gem 'sqlite3-ruby', '1.3.3'
 
-# Use unicorn as the app server
- gem 'unicorn'
 
 # Use sqlite3 as the database for Active Record
 	gem 'sqlite3'	
@@ -29,8 +26,6 @@ group :development do
 #adds comments of the actual model to our model.rb file
 	#gem 'annotate-models' this doesn't work..
 	gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
-#allows use of 'attr_accessible' in model file(e.g ./app/models/user.rb)
-	gem 'protected_attributes'
 #allows creation of fake users and somewhat acceptible emails	
 	gem 'faker'
 end
@@ -39,14 +34,14 @@ group :test do
 	gem 'rspec'
 	gem 'webrat'
 	gem 'autotest'
-	gem 'protected_attributes'
 #factories gem tht helpsin testing by providing a sample user for testing on(Rspec)
 	gem 'factory_girl_rails'
 end
 
-group :doc do
-  gem 'sdoc', require: false
-end
+gem 'will_paginate'
+
+#allows use of 'attr_accessible' in model file(e.g ./app/models/user.rb)
+gem 'protected_attributes'
 
 #gravatar-globally recognized avatar
 gem 'gravatar_image_tag'
