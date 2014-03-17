@@ -1,8 +1,10 @@
-require 'faker'
-
 namespace :db do
 	desc "Fill database with sample data"
 	task :populate => :environment do #by pointing it to the enviroment variable means it can access the rails local envr and 	#use: User.create! and such methods
+
+# we require it inside the task coz heroku can't load faker
+
+	require 'faker'
 
 		Rake::Task['db:reset'].invoke
 			make_users
