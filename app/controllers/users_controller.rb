@@ -116,8 +116,13 @@ class UsersController < ApplicationController
 		end
 		
 		def not_signed_in
-			flash[:notice] = "You are already a registered user. Please sign out to register another user!"
+
+		if signed_in?
 			redirect_to(root_path) unless !signed_in?
+			flash[:notice] = "You are already a registered user. Please sign out to register another user!"
+		else
+		end
+					
 		end
 		
 end
