@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def show
 		@user = User.find(params[:id])
 		@microposts = @user.microposts.paginate(:page => params[:page])
-		@title = @user.name
+		@title = @user.first_name
 	end
   
   def new
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
 		if @user.save
 			sign_in @user #signs in the signed up user
-			flash[:success] = "Welcome to the Sample App!"
+			flash[:success] = "Hi #{@user.first_name}, welcome to JobRadar"
 			redirect_to @user
 		else
 			@title = "Sign up"

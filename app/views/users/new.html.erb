@@ -4,11 +4,12 @@
 	<%= render 'fields', :f => f %>
 	<fieldset>
 	<div class="actions">
-    <label for="role" id="role_lb">Sign up as:</label>
-    <% [ 'Job seeker', 'Employer' ].each do |role| %>
-      <br><%= radio_button_tag 'role', role, @role == role, :required=>"required" %>
-      <%= label_tag "role_#{role}", role.humanize,:id=>"label_roles" %>
-    <% end %>
+    
+    <%= f.label :role, "Sign up as a:" %><br>
+    <%= f.radio_button :role, "jobseeker",:required=>"required" %>
+    <%= f.label :role, "Job seeker", :value=>"jobseeker",:id=>"label_roles" %><br>
+    <%= f.radio_button :role, "employer",:required=>"required" %>
+    <%= f.label :role, "Employer", :value=>"employer",:id=>"label_roles" %>
 	</div>
 	</fieldset><br>
 	<fieldset>

@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
 									:last_name,
 									:email,
 									:password,
-									:password_confirmation
+									:password_confirmation,
+									:role
 	
 	has_many :microposts, :dependent => :destroy
 	#:dependent option deletes all microposts associated with the destroyed user
@@ -64,6 +65,9 @@ class User < ActiveRecord::Base
 	validates :password, :presence => true, 
 											 :confirmation => true, #makes use of virtual attribute created
 											 :length => {:within => 8..40}, unless: Proc.new { |a| !a.new_record? && a.password.blank? }
+											 
+	validates :role, presence:true,
+																:length => {:maximum => 12}, unless: Proc.new { |a| !a.new_record? && a.password.blank? }
 	
 	before_save :encrypt_password
 	
