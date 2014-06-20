@@ -78,6 +78,9 @@ end
 
 # Use unicorn as the app server
  gem 'unicorn'
+ 
+#server i want to use in testing ssl
+ gem 'thin'
 
 # Use Capistrano for deployment
  gem 'capistrano', group: :development

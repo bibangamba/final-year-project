@@ -64,9 +64,10 @@ nav ul li a:visited {
 nav ul li a:hover {
 	text-decoration: underline;
 	}
-	
+
 	/* Sign up button */
-	a.signup_button {
+
+	a.new_user_button {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
@@ -85,6 +86,170 @@ nav ul li a:hover {
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
 }
+
+
+/*start: all placeholder styling*/
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #A0B2FA;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #A0B2FA;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #A0B2FA;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #A0B2FA;
+}
+
+/*end: placeholder styling*/
+
+	/*signup and edit profile page*/
+	
+	/*fields*/
+fieldset{
+	border: 0;
+}
+fieldset {
+	margin: 0 0 0 0;
+	height:15px;
+}
+fieldset:last-child {
+	margin: 0;
+}
+
+input[type="text"], input[type="password"] {
+	padding: 5px 8px;
+	margin: 5px;
+	font-size: 1.2em;
+	color: #06f;
+	border: 2px solid #ddd;
+  box-shadow: none;
+	background-color: #fff;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+}
+
+	/*size of fields specific to sig up and edit pages*/
+#new_user fieldset input[type="text"]{width:215px;}
+#new_user fieldset input[type="password"]{width:460px;}
+#new_user fieldset input[id="user_email"]{width:460px;}
+
+	/*creates blue outline on focus*/
+input[type="text"]:focus,input[type="text"]:hover, input[type="password"]:focus, input[type="password"]:hover{
+	outline:none;
+  border-color:#129FEA;
+}
+	/*end: fields*/
+
+/*Roles div/section*/
+	#label_roles{
+	color: #06f;
+	font-weight: 500;
+		
+	}
+/*End: roles div/section*/
+
+
+/*submit button*/
+#signup_btn{
+	display:inline-block;
+	*display:inline;
+	zoom:1;
+	line-height:normal;
+	white-space:nowrap;
+	vertical-align:baseline;
+	text-align:center;
+	cursor:pointer;
+	-webkit-user-drag:none;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none
+}
+
+#signup_btn::-moz-focus-inner{
+	padding:0;
+	border:0
+}
+
+#signup_btn{
+	font-family:inherit;
+	font-size:100%;
+	*font-size:90%;
+	*overflow:visible;
+	padding:.5em 1em;
+	color:#444;color:rgba(0,0,0,.8);
+	*color:#444;border:1px solid #999;
+	border:0 rgba(0,0,0,0);
+	background-color:#E6E6E6;
+	text-decoration:none;
+	border-radius:2px
+}
+
+#signup_btn:hover,#signup_btn:focus{
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000',GradientType=0);
+	background-image:-webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(40%,rgba(0,0,0,.05)),to(rgba(0,0,0,.1)));
+	background-image:-webkit-linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+	background-image:-moz-linear-gradient(top,rgba(0,0,0,.05) 0,rgba(0,0,0,.1));
+	background-image:-o-linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+	background-image:linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1))
+}
+
+#signup_btn:focus{
+	outline:0
+}
+
+#signup_btn:active{
+	box-shadow:0 0 0 1px rgba(0,0,0,.15) inset,0 0 6px rgba(0,0,0,.2) inset
+}
+
+#signup_btn::-moz-focus-inner{
+	padding:0;border:0
+}
+
+#signup_btn {
+    background-color: #1f8dd6;
+    color: white;
+    padding: 0.5em 2em;
+    border-radius: 5px;
+}
+
+/*end: signup and edit profile page*/
+
+
+/*start: for signin form*/
+#session_email, #session_password{
+	width:215px;
+	padding: 5px 8px;
+	margin: 5px;
+	font-size: 1.2em;
+	color: #06f;
+	border:1px inset #c1c1c1;
+	border-top-color: rgb(193, 193, 193);
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-left-color: rgb(193, 193, 193);
+	border-left-style: solid;
+	border-left-width: 1px;
+	background-color: #fff;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	
+}
+
+/*creates blue outline on focus*/
+#session_email:focus, #session_password:focus{
+	outline:none;
+  border-color:#A0B2FA;	
+}
+/*end: signin styling*/
+	
+
 
 	/*footer css*/
 footer {
@@ -124,12 +289,13 @@ td.sidebar {
 	/*Sign up page*/
 div.field, div.actions {
 margin-bottom: 10px;
-
+}
 	/*Error messages*/
 .field_with_errors {
 	margin-top: 10px;
 	padding: 2px;
-	background-color: red;
+	border:1px solid red;
+/*	background-color: red;*/
 	display: table;
 	}
 
@@ -139,7 +305,7 @@ margin-bottom: 10px;
 
 #error_explanation {
 	width: 400px;
-	border: 2px solid red;
+	border: 1px solid red;
 	padding: 7px;
 	padding-bottom: 12px;
 	margin-bottom: 20px;

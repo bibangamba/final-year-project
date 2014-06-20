@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def show
 		@user = User.find(params[:id])
 		@microposts = @user.microposts.paginate(:page => params[:page])
-		@title = @user.name
+		@title = @user.first_name
 	end
   
   def new
@@ -118,9 +118,8 @@ class UsersController < ApplicationController
 		def not_signed_in
 
 		if signed_in?
-			redirect_to(root_path) unless !signed_in?
+			redirect_to(root_path)
 			flash[:notice] = "You are already a registered user. Please sign out to register another user!"
-		else
 		end
 					
 		end

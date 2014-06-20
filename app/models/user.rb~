@@ -19,9 +19,13 @@ class User < ActiveRecord::Base
 	#lets rails know w/c attributes are accessible i.e can be modified by external entities e.g submission from a web browser.
 	#[USE strong_parameters in the user_controller class] or add protected_attributes gem to the Gemfile
 		 	
-	attr_accessor :password
+	attr_accessor :password #virtual attr created
 
-	attr_accessible :name, :email, :password, :password_confirmation
+	attr_accessible :first_name,
+									:last_name,
+									:email,
+									:password,
+									:password_confirmation
 	
 	has_many :microposts, :dependent => :destroy
 	#:dependent option deletes all microposts associated with the destroyed user
@@ -29,27 +33,36 @@ class User < ActiveRecord::Base
 	#specifying the foreign key since rails can't infer
 	has_many :relationships,  :foreign_key => "follower_id",
 														:dependent => :destroy
-	has_many :following, :through => :relationships, :source => :followed
+														
+	has_many :following, :through => :relationships,
+																	 :source => :followed
 	
 	#the reverse relationship
 	#we include the class coz rails would otherwise look for ReverseRelationship class that doesn't exist
 	has_many :reverse_relationships, :foreign_key => "followed_id",
 																	 :class_name => "Relationship",
 																	 :dependent => :destroy
-has_many :followers, :through => :reverse_relationships, :source => :follower
+																	 
+	has_many :followers, :through => :reverse_relationships,
+											 :source => :follower
 	
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	
-	#both methods for validating presence are fine.
-	validates :name, :presence => true, :length => {:maximum => 50}
+	#both methods for validating presence are fine. 
+	validates :first_name, :presence => true,
+																			:length => {:maximum => 50}, unless: Proc.new { |a| !a.new_record? && a.password.blank? }
+	
+	#unless: Proc.new{} block enables sving /w no vldtn if rcrd alrdy xists
+	validates :last_name, presence:true,
+																:length => {:maximum => 50}, unless: Proc.new { |a| !a.new_record? && a.password.blank? }
 	
 	validates :email, presence: true,
 										format: {with: email_regex},
-										:uniqueness => { :case_sensitive => false }
+										:uniqueness => { :case_sensitive => false }, unless: Proc.new { |a| !a.new_record? && a.password.blank? }
 	
 	validates :password, :presence => true, 
-											 :confirmation => true,
-											 :length => {:within => 8..40}
+											 :confirmation => true, #makes use of virtual attribute created
+											 :length => {:within => 8..40}, unless: Proc.new { |a| !a.new_record? && a.password.blank? }
 	
 	before_save :encrypt_password
 	
@@ -66,8 +79,10 @@ has_many :followers, :through => :reverse_relationships, :source => :follower
 		return user if user.has_password?(submitted_password)
 	end
 	
+	#mthd for cookies
 	def self.authenticate_with_salt(id, cookie_salt)
 		user = find_by_id(id)
+		#if they match then return the user else return nil
 		(user && user.salt == cookie_salt) ? user : nil
 	end
 	
@@ -89,9 +104,25 @@ has_many :followers, :through => :reverse_relationships, :source => :follower
 	
 	#micropost feed method
 	def feed
-		def feed
-			Micropost.from_users_followed_by(self)
+		Micropost.from_users_followed_by(self)
 	end
+	
+	
+	#pswd reset instrctns sndng mthd
+	def send_password_reset
+		generate_token(:password_reset_token)
+		self.password_sent_at = Time.zone.now
+		save!
+		UserMailer.password_reset(self).deliver
+	end
+	
+	#rndm tkn gnrtr
+	def generate_token(column)
+		begin
+			self[column] = SecureRandom.urlsafe_base64			
+		end while User.exists?(column => self[column])		
+	end
+	
 	
 	private
 

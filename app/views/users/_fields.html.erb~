@@ -1,21 +1,18 @@
+<h1></h1>
 <%= render 'shared/error_messages', :object => f.object %>
 
-	<div class="field">
-		<%= f.label :name %><br />
-		<%= f.text_field :name %>
-	</div>
+	<fieldset>
+		<%= f.text_field :first_name, :placeholder=> "First Name", :required=> "true"%> <%= f.text_field :last_name, :placeholder=> "Last Name"%>
+	</fieldset>
 
-	<div class="field">
-		<%= f.label :email %><br />
-		<%= f.text_field :email %>
-	</div>
+	<fieldset>
+		<%= f.text_field :email, :placeholder=> "Email Address", :required=> "true"%>
+	</fieldset>
 
-	<div class="field">
-		<%= f.label :password %><br />
-		<%= f.password_field :password %>
-	</div>
+	<fieldset>
+		<%= f.password_field :password, :placeholder=> "Password", :required=> "true"%>
+	</fieldset>
 
-	<div class="field">
-		<%= f.label :password_confirmation, "Confirmation" %><br />
-		<%= f.password_field :password_confirmation %>
-	</div>
+	<fieldset>
+		<%= f.password_field :password_confirmation, :placeholder=> "Re-enter Password", :required=> "true"%>
+	</fieldset>

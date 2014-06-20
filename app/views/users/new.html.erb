@@ -1,9 +1,19 @@
 <h1>Sign up</h1>
 
 <%= form_for(@user) do |f| %>
-	<%= render 'shared/error_messages', :object => f.object %>
 	<%= render 'fields', :f => f %>
+	<fieldset>
 	<div class="actions">
-		<%= f.submit "Sign up" %>
+    <label for="role" id="role_lb">Sign up as:</label>
+    <% [ 'Job seeker', 'Employer' ].each do |role| %>
+      <br><%= radio_button_tag 'role', role, @role == role, :required=>"required" %>
+      <%= label_tag "role_#{role}", role.humanize,:id=>"label_roles" %>
+    <% end %>
 	</div>
+	</fieldset><br>
+	<fieldset>
+	<div class="actions">
+		<%= f.submit "Sign up", :id=>"signup_btn" %>
+	</div>
+	</fieldset>
 <% end %>

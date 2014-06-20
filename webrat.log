@@ -138,3 +138,13 @@ D, [2014-03-09T17:59:59.817233 #14921] DEBUG -- : REQUESTING PAGE: GET http://ww
 D, [2014-03-09T17:59:59.853166 #14921] DEBUG -- : REQUESTING PAGE: GET / with {} and HTTP headers {"HTTP_REFERER"=>"http://www.example.com/users/1"}
 D, [2014-03-09T17:59:59.891631 #14921] DEBUG -- : REQUESTING PAGE: POST /microposts with {"utf8"=>"✓", "micropost"=>{"content"=>"Lorem ipsum dolor sit amet"}, "commit"=>"Submit"} and HTTP headers {"HTTP_REFERER"=>"/"}
 D, [2014-03-09T17:59:59.905655 #14921] DEBUG -- : REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/microposts"}
+D, [2014-06-10T16:00:06.406037 #3422] DEBUG -- : REQUESTING PAGE: GET /signin with {} and HTTP headers {}
+D, [2014-06-10T16:00:06.861209 #3422] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2014-06-10T16:00:06.875240 #3422] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {}
+D, [2014-06-10T16:00:07.121195 #3422] DEBUG -- : REQUESTING PAGE: GET / with {} and HTTP headers {}
+D, [2014-06-10T16:00:07.151387 #3422] DEBUG -- : REQUESTING PAGE: GET /about with {} and HTTP headers {"HTTP_REFERER"=>"/"}
+D, [2014-06-10T16:00:07.180703 #3422] DEBUG -- : REQUESTING PAGE: GET /help with {} and HTTP headers {"HTTP_REFERER"=>"/about"}
+D, [2014-06-10T16:00:07.215031 #3422] DEBUG -- : REQUESTING PAGE: GET /contact with {} and HTTP headers {"HTTP_REFERER"=>"/help"}
+D, [2014-06-10T16:00:07.243693 #3422] DEBUG -- : REQUESTING PAGE: GET / with {} and HTTP headers {"HTTP_REFERER"=>"/contact"}
+D, [2014-06-10T16:00:07.274959 #3422] DEBUG -- : REQUESTING PAGE: GET /signup with {} and HTTP headers {"HTTP_REFERER"=>"/"}
+D, [2014-06-10T16:00:07.289865 #3422] DEBUG -- : REQUESTING PAGE: GET / with {} and HTTP headers {}

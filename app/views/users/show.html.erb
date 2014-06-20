@@ -4,7 +4,7 @@
 			<td class="main">
 				<h1>
 					<%= gravatar_for @user %>
-					<%= @user.name %>
+					<%= @user.first_name %>
 				</h1>
 				<%= render 'follow_form' if signed_in? %>
 				<% unless @user.microposts.empty? %>
@@ -16,7 +16,8 @@
 			</td>
 			<h3>
 			<td class="sidebar round">
-				<strong>Name</strong> <%= @user.name %><br />
+			<%@nom ="#{@user.first_name} #{@user.last_name}"%>
+				<strong>Name</strong> <%= @nom %><br />
 				<strong>URL</strong> <%= link_to user_path(@user), @user %><br />
 				<strong>Microposts</strong> <%= @user.microposts.count %>
 				<%= render 'shared/stats' %>

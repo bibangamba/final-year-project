@@ -1,5 +1,6 @@
 StaticDynamic::Application.routes.draw do
 
+  #get "password_resets/new" #we make it a rsrc instd
   get "sessions/new"
 	#allows REST-like urls for users to work(create, new, destroy etc actions)
 	resources :users do
@@ -9,9 +10,12 @@ StaticDynamic::Application.routes.draw do
 			get :following, :followers
 		end
 	end
+	
+	#rsrc = indx,shw,nw,crt,edt,updt,dstry| :only lmts urls crtd
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :microposts, :only => [:create, :destroy]
 	resources :relationships, :only => [:create, :destroy]  
+	resources :password_resets
 	  
 	  
   #get "users/new" #no longer needed since the resources line above automatically adds these paths(is RESTful Users resource)
