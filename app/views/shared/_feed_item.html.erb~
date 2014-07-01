@@ -8,7 +8,7 @@
 		</span>
 		<span class="content"><%= feed_item.content %></span><br />
 		<span class="timestamp">
-			Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+			<i>Posted <%= time_ago_in_words(feed_item.created_at) %> ago.</i>
 		</span>
 	</td>
 

@@ -1,0 +1,60 @@
+# == Schema Information
+#
+# Table name: jobseekers
+#
+#  id            :integer          not null, primary key
+#  user_id       :integer
+#  dob           :date
+#  sex           :string(255)
+#  location      :string(255)
+#  phone         :integer
+#  qualification :string(255)
+#  experience    :integer
+#  field         :string(255)
+#  cv_name       :string(255)
+#  summary       :text
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
+require 'spec_helper'
+
+describe Jobseeker do
+  
+  before(:each) do
+		@user = FactoryGirl.create(:user)
+		@attr = {	
+						:dob => "1992",
+						:sex => "male",
+						:location => "kampala",
+						:phone => "0785999930",
+						:qualification => "programmer",
+						:experience => "2",
+						:field => "computer science",
+						:cv_name => "bibangamba",
+						:summary => "hardworking"	}
+  end
+  
+  #note: for a has_one association, we must use a prefix create_ then the model name to create an instance
+  it "should create a new instance of jobseeker_details given valid attributes" do
+  #create Jobseeker through User model since user_id should be inaccessible via web app(security)
+  	@user.create_jobseeker!(@attr)
+  end
+  
+  #testing the association
+  describe "user, jobseeker associaton"do
+  	
+  	before(:each) do
+  		@jobseeker = @user.create_jobseeker(@attr)
+  	end
+  	
+  	it "should have a user attribute" do
+  		@jobseeker.should respond_to(:user)
+  	end
+  	
+  	it "should have the right user associated to it" do
+  		@jobseeker.user_id.should == @user.id
+  		@jobseeker.user.should == @user
+  	end
+  end
+end

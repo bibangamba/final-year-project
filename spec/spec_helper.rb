@@ -41,7 +41,7 @@ RSpec.configure do |config|
   config.order = "random"
   
   
-  #mthd we'll use to test signing out, we need a signed in user to sign out hence the addition of this mthd
+#mtd to sign in for tests. uses inbuilt 'controller' variable for rails tests. Since 'sign_in' mthd is in 'session_helper', we can call it throughout the app(via views and controllers)
   def test_sign_in(user)
 		controller.sign_in(user)
 	end

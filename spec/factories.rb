@@ -2,10 +2,12 @@
 
 FactoryGirl.define do
 	factory :user do
-		name "bibangamba"
+		first_name "andrew"
+		last_name "bibangamba"
 		email "bibangamba@gmail.com"
 		password "yurizahard"
 		password_confirmation "yurizahard"
+		role "jobseeker"
 	end
 	
 	sequence :email do |n|

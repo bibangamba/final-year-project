@@ -18,6 +18,7 @@ describe UsersController do
 			describe "for signed-in users" do
 
 				before(:each) do
+					#tst_sgn_in mthd is in 'spec_helper' and enables signing in test enviroment
 					@user = test_sign_in(FactoryGirl.create(:user))
 					second = FactoryGirl.create(:user, :email => "another@example.com")
 					third = FactoryGirl.create(:user, :email => "another@example.net")
@@ -42,14 +43,14 @@ describe UsersController do
 				it "should have an element for each user" do
 					get :index
 					@users.each do |user|
-						response.should have_selector("li", :content =>  user.name)
+						response.should have_selector("li", :content =>  user.first_name)
 					end
 				end
 			
 			it "should have an element for each user" do
 				get :index
 				@users[0..2].each do |user|
-					response.should have_selector("li", :content => user.name)
+					response.should have_selector("li", :content => user.first_name)
 				end
 			end
 
@@ -79,7 +80,7 @@ describe UsersController do
 			get :show, :id => @user
 			assigns(:user).should == @user
 		end
-		
+=begin		
 		it "should show the user's microposts" do
 			mp1 = FactoryGirl.create(:micropost, :user => @user, :content => "Foo bar")
 			mp2 = FactoryGirl.create(:micropost, :user => @user, :content => "Baz quux")
@@ -87,6 +88,7 @@ describe UsersController do
 			response.should have_selector("span.content", :content => mp1.content)
 			response.should have_selector("span.content", :content => mp2.content)
 		end
+=end
 	end#show action[GET]
 
   describe "GET 'new'" do
@@ -103,7 +105,12 @@ describe UsersController do
 		
 		it "should have a name field" do
 			get :new
-			response.should have_selector("input[name='user[name]'][type='text']")
+			response.should have_selector("input[name='user[first_name]'][type='text']")
+		end
+		
+		it "should have a name field" do
+			get :new
+			response.should have_selector("input[name='user[last_name]'][type='text']")
 		end
 		
 		it "should have an email field" do
@@ -128,7 +135,7 @@ describe UsersController do
 		describe "failure" do
 
 			before(:each) do
-				@attr = { :name => "", :email => "", :password => "", :password_confirmation => "" }
+				@attr = { :first_name => "", :email => "", :password => "", :password_confirmation => "" }
 			end
 
 			it "should not create a user" do
@@ -151,8 +158,8 @@ describe UsersController do
 		describe "success" do
 			
 			before(:each) do
-				@attr = { :name => "New User", :email => "user@example.com",
-				:password => "foobar12", :password_confirmation => "foobar12" }
+				@attr = { :first_name => "New User",:last_name => "New User", :email => "user@example.com",
+				:password => "foobar12", :password_confirmation => "foobar12", :role => "jobseeker" }
 			end
 
 			it "should create a user" do
@@ -174,7 +181,7 @@ describe UsersController do
 			
 			it "should have a welcome message" do
 				post :create, :user => @attr
-				flash[:success].should =~ /welcome to the sample app/i
+				flash[:success].should =~ /Hi New User, welcome to JobRadar. /i
 			end
 		end
 		
@@ -216,7 +223,8 @@ describe UsersController do
 		describe "failure" do
 			
 			before(:each) do
-				@attr = { :email => "", :name => "", :password => "", :password_confirmation => "" }
+				@attr = { :first_name => "",:last_name => "", :email => "user@example.com",
+				:password => "foobar12", :password_confirmation => "foobar12", :role => "jobseeker" }
 			end
 
 			it "should render the 'edit' page" do
@@ -233,14 +241,14 @@ describe UsersController do
 
 		describe "success" do
 			before(:each) do
-				@attr = { :name => "New Name", :email => "user@example.org", :password => "barbaz12", :password_confirmation => "barbaz12" }
+				@attr = { :first_name => "New Name", :email => "user@example.org", :password => "barbaz12", :password_confirmation => "barbaz12" }
 			end
 
 			it "should change the user's attributes" do
 				put :update, :id => @user, :user => @attr
 				@user.reload #reloads the @user instance variable to get the updated info from
 				#the database(test) usually: @user=User.find(params[:id])
-				@user.name.should == @attr[:name]
+				@user.first_name.should == @attr[:first_name]
 				@user.email.should == @attr[:email]
 			end
 
@@ -376,12 +384,12 @@ describe UsersController do
 
 			it "should show user following" do
 				get :following, :id => @user
-				response.should have_selector("a", :href => user_path(@other_user), :content => @other_user.name)
+				response.should have_selector("a", :href => user_path(@other_user), :content => @other_user.first_name)
 			end
 
 			it "should show user followers" do
 				get :followers, :id => @other_user
-				response.should have_selector("a", :href => user_path(@user), :content => @user.name)
+				response.should have_selector("a", :href => user_path(@user), :content => @user.first_name)
 			end
 		end
 	end#follow pages

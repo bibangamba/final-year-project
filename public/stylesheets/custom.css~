@@ -90,16 +90,16 @@ nav ul li a:hover {
 
 /*start: all placeholder styling*/
 ::-webkit-input-placeholder { /* WebKit browsers */
-    color:    #A0B2FA;
+    color:    #66A6CF;    
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    #A0B2FA;
+    color:    #66A6CF;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:    #A0B2FA;
+    color:    #66A6CF;
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
-    color:    #A0B2FA;
+    color:    #66A6CF;
 }
 
 /*end: placeholder styling*/
@@ -118,7 +118,7 @@ fieldset:last-child {
 	margin: 0;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], #jobseeker_summary {
 	padding: 5px 8px;
 	margin: 5px;
 	font-size: 1.2em;
@@ -133,12 +133,13 @@ input[type="text"], input[type="password"] {
 }
 
 	/*size of fields specific to sig up and edit pages*/
-#new_user fieldset input[type="text"]{width:215px;}
-#new_user fieldset input[type="password"]{width:460px;}
-#new_user fieldset input[id="user_email"]{width:460px;}
+#new_user fieldset input[type="text"], .edit_user fieldset input[type="text"]{width:213px;}
+/*width for both signup and edit*/
+#new_user fieldset input[type="password"],.edit_user fieldset input[type="password"]{width:460px;}
+#new_user fieldset input[id="user_email"],.edit_user fieldset input[id="user_email"]{width:460px;}
 
 	/*creates blue outline on focus*/
-input[type="text"]:focus :hover, input[type="password"]:focus :hover{
+input[type="text"]:focus,input[type="text"]:hover, input[type="password"]:focus, input[type="password"]:hover, #jobseeker_summary:focus, #jobseeker_summary:hover{
 	outline:none;
   border-color:#129FEA;
 }
@@ -153,8 +154,8 @@ input[type="text"]:focus :hover, input[type="password"]:focus :hover{
 /*End: roles div/section*/
 
 
-/*submit button*/
-#signup_btn{
+/*all submit buttons*/
+input[type="submit"]{
 	display:inline-block;
 	*display:inline;
 	zoom:1;
@@ -170,12 +171,12 @@ input[type="text"]:focus :hover, input[type="password"]:focus :hover{
 	user-select:none
 }
 
-#signup_btn::-moz-focus-inner{
+input[type="submit"]::-moz-focus-inner{
 	padding:0;
 	border:0
 }
 
-#signup_btn{
+input[type="submit"]{
 	font-family:inherit;
 	font-size:100%;
 	*font-size:90%;
@@ -187,9 +188,10 @@ input[type="text"]:focus :hover, input[type="password"]:focus :hover{
 	background-color:#E6E6E6;
 	text-decoration:none;
 	border-radius:2px
+	
 }
 
-#signup_btn:hover,#signup_btn:focus{
+input[type="submit"]:hover,input[type="submit"]:focus{
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000',GradientType=0);
 	background-image:-webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(40%,rgba(0,0,0,.05)),to(rgba(0,0,0,.1)));
 	background-image:-webkit-linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
@@ -198,58 +200,106 @@ input[type="text"]:focus :hover, input[type="password"]:focus :hover{
 	background-image:linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1))
 }
 
-#signup_btn:focus{
+input[type="submit"]:focus{
 	outline:0
 }
 
-#signup_btn:active{
+input[type="submit"]:active{
 	box-shadow:0 0 0 1px rgba(0,0,0,.15) inset,0 0 6px rgba(0,0,0,.2) inset
 }
 
-#signup_btn::-moz-focus-inner{
+input[type="submit"]::-moz-focus-inner{
 	padding:0;border:0
 }
 
-#signup_btn {
+input[type="submit"] {
+/*		background-color: #1f8dd6;*/
     background-color: #1f8dd6;
     color: white;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);/*make the text appear as if its on top*/
     padding: 0.5em 2em;
     border-radius: 5px;
 }
 
+#signup_btn{
+	font-size: 20px;
+	background-color: #49BE16;
+	width: 150px;
+	font-weight: normal;
+	text-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
 /*end: signup and edit profile page*/
 
 
 /*start: for signin form*/
 #session_email, #session_password{
 	width:215px;
-	padding: 5px 8px;
-	margin: 5px;
+}
+
+/*end: signin styling*/
+
+/*Edit profile page*/	
+#update_profile_btn{
+	background-color: #F79D17;
+}
+
+
+#new_jobseeker input[type="text"], .edit_jobseeker input[type="text"]{
+	width:460px;
+}
+
+#new_jobseeker select option, .edit_jobseeker select option {
+    text-shadow:0 1px 0 rgba(0,0,0,0.4);
+}
+
+#new_jobseeker select, .edit_jobseeker select{
+	padding: 5px;
+	font-size: 16px;
+	line-height: 1;
+	height: 34px;
+	margin: 0px;/*removes space btn div and select tag after 'display:inline-block' rule*/
 	font-size: 1.2em;
 	color: #06f;
-	border:1px inset #c1c1c1;
-	border-top-color: rgb(193, 193, 193);
-	border-top-style: solid;
-	border-top-width: 1px;
-	border-left-color: rgb(193, 193, 193);
-	border-left-style: solid;
-	border-left-width: 1px;
-	background-color: #fff;
+	border: 0px;
+  box-shadow: none;
+	background-color: #eee;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-o-border-radius: 4px;
 	border-radius: 4px;
-	
+
 }
 
-/*creates blue outline on focus*/
-#session_email:focus, #session_password:focus{
-	outline:none;
-  border-color:#A0B2FA;	
-}
-/*end: signin styling*/
-	
 
+.select_border{
+	display:inline-block;
+	border: 2px solid black;
+	border-color: #ddd;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+
+}
+
+.select_border:hover, .select_border:focus{
+	border-color: #129FEA;
+	}
+
+#new_jobseeker select:focus, #new_jobseeker select:hover {
+  border-color: #129FEA;
+}
+
+#jobseeker_summary{
+		height: 90px;
+		width: 460px;
+		font: inherit;
+		font-size: 1.2em;
+		resize: none;
+}
+
+
+/*end: edit profile*/
 
 	/*footer css*/
 footer {
@@ -388,3 +438,37 @@ form.new_micropost textarea {
 	height: 4em;
 	margin-bottom: 0;
 	}
+	
+/*job list structure*/
+#list{
+	width:400px;
+	margin:0 auto;
+	padding: 0px;
+}
+
+h2, h1, h3, h4{
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-size:15pt;
+	margin:2px;
+}
+
+#list_items{
+	margin:0px;
+	padding:0px;
+	width:500px;
+}
+/* Gradient color1 - color2 - color1 */
+		
+hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc); 
+    background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc); 
+    background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc); 
+    background-image:      -o-linear-gradient(left, #ccc, #333, #ccc); 
+}
+ul{
+	list-style-type: none;
+}
+

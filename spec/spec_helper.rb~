@@ -41,6 +41,7 @@ RSpec.configure do |config|
   config.order = "random"
   
   
+#mtd to sign in for tests. uses inbuilt 'controller' variable for rails tests. Since 'sign_in' mthd is in 'session_helper', we can call it
   def test_sign_in(user)
 		controller.sign_in(user)
 	end

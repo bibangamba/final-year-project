@@ -19,8 +19,16 @@ class UsersController < ApplicationController
   
   def show
 		@user = User.find(params[:id])
-		@microposts = @user.microposts.paginate(:page => params[:page])
-		@title = @user.first_name
+		
+		#condition to check that jobseeker != nil. if it is, don't paginate
+		if @user.jobseeker
+			@jobseeker = @user.jobseeker#.paginate(:page => params[:page])
+			@title = @user.first_name
+		else
+			@jobseeker = @user.jobseeker
+			@title = @user.first_name
+		end
+		
 	end
   
   def new
@@ -38,8 +46,9 @@ class UsersController < ApplicationController
 
 		if @user.save
 			sign_in @user #signs in the signed up user
-			flash[:success] = "Hi #{@user.first_name}, welcome to JobRadar"
-			redirect_to @user
+			flash[:success] = "Hi #{@user.first_name}, welcome to JobRadar. "
+			#redirect_to @user
+			redirect_to pages_profile_path
 		else
 			@title = "Sign up"
 			render 'new'
@@ -55,7 +64,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	
 		if @user.update_attributes(params[:user])
-			flash[:success] = "Profile updated."
+			flash[:success] = "your settings were updated."
 			redirect_to @user
 		else
 			@title = "Edit user"

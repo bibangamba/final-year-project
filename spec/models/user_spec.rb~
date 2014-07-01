@@ -2,11 +2,18 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  last_name            :string(255)
+#  id                   :integer          primary key
+#  first_name           :string(255)
+#  email                :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  encrypted_password   :string(255)
+#  salt                 :string(255)
+#  admin                :boolean
+#  password_reset_token :string(255)
+#  password_sent_at     :datetime
+#  role                 :string(255)
 #
 
 require 'spec_helper'
@@ -14,20 +21,23 @@ require 'spec_helper'
 
 describe User do
 	before(:each) do
-		@attr = { 
-							:name => "Example User",
+		@attr = { 							
+							:first_name => "Example",
+							:last_name => "User",
 							:email => "user@example.com",
 							:password => "foobar12",
-							:password_confirmation => "foobar12"
+							:password_confirmation => "foobar12",
+							:role => "jobseeker"
 							}
 	end
 	
+	#create!(!-bang) returns an exception if something goes wrong. create might return silent errors.
 	it "should create a new instance given valid attributes" do
-		User.create!(@attr) #create!(!-bang) returns an exception if something goes wrong. create might return silent errors.
+		User.create!(@attr) 
 	end
 	
 	it "should require a name" do
-		no_name_user = User.new(@attr.merge(:name => ""))
+		no_name_user = User.new(@attr.merge(:first_name => ""))
 		no_name_user.should_not be_valid
 	end
 	
@@ -38,7 +48,7 @@ describe User do
 	
 	it "should reject names that are too long" do
 		long_name = "a" * 51
-		long_name_user = User.new(@attr.merge(:name => long_name))
+		long_name_user = User.new(@attr.merge(:first_name => long_name))
 		long_name_user.should_not be_valid
 	end
 	
@@ -166,6 +176,19 @@ describe User do
 		end
 	end
 	
+	#jobseeker association
+	describe "jobseeker association" do
+		before(:each) do
+		  @user = User.create(@attr)
+		end
+		
+		it "should have a jobseeker attributes" do
+			@user.should respond_to(:jobseekers)
+		end
+	end
+
+
+=begin
 	describe "micropost associations" do
 		before(:each) do
 			@user = User.create(@attr)
@@ -215,7 +238,7 @@ describe User do
 			
 			it "should include the microposts of followed users" do
 				followed = FactoryGirl.create(:user, :email => FactoryGirl.generate(:email))
-				mp3 = Factory(:micropost, :user => followed)
+				mp3 = FactoryGirl.create(:micropost, :user => followed)
 				@user.follow!(followed)
 				@user.feed.should include(mp3)
 			end
@@ -276,4 +299,7 @@ describe User do
 			@followed.followers.should include(@user)
 		end
 	end
+	
+=end
+
 end

@@ -1,17 +1,25 @@
 <% if signed_in? %>
-	<table class="front" summary="For signed-in users">
-		<tr>
-			<td class="main">
-				<h1 class="micropost">What's up?</h1>
-					<%= render 'shared/micropost_form' %>
-					<%= render 'shared/feed' %>
-			</td>
-			<td class="sidebar round">
-				<%= render 'shared/user_info' %>
-				<%= render 'shared/stats' %>
-			</td>
-		</tr>
-	</table>
+<div id="list">
+	<ul id="list_items">
+		<li>
+				<div id="info">
+				<h2>car washer needed.</h2>
+				<h3>salary per hour:<i> UGX 2,000</i></h3>
+				<h3>location:<i> naguru </i></h3><h3>posted by:<i> mariam </i></h3>
+				</div>
+			<hr>
+
+		</li>
+		<li>
+				<div id="info">
+				<h2>mechanic wanted</h2>
+				<h3>salary per month:<i> UGX 250,000</i></h3>
+				<h1>location:<i> wandegeya </i></h3><h3>posted by:<i> matovu </i></h3>
+				</div>
+			<hr>
+		</li>
+	</ul>
+</div>
 <% else %>
 	<h1>Static_Dynamic</h1>
 	<p>

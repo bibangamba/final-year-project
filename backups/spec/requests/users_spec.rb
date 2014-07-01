@@ -9,7 +9,7 @@ describe "Users" do
 			it "should not make a new user" do
 				lambda do
 					visit signup_path
-					fill_in "Name", :with => ""
+					fill_in "first_name", :with => ""
 					fill_in "Email", :with => ""
 					fill_in "Password", :with => ""
 					fill_in "Confirmation", :with => ""
@@ -25,7 +25,7 @@ describe "Users" do
 			it "should make a new user" do
 				lambda do
 					visit signup_path
-					fill_in "Name", :with => "Example User"
+					fill_in "first_name", :with => "Example User"
 					fill_in "Email", :with => "user@example.com"
 					fill_in "Password", :with => "foobar12"
 					fill_in "Confirmation", :with => "foobar12"
@@ -42,7 +42,7 @@ describe "Users" do
 		
 				it "should not sign a user in" do
 					visit signin_path
-					fill_in :email, :with => ""
+					fill_in :Email, :with => ""
 					fill_in :password, :with => ""
 					click_button
 					response.should have_selector("div.flash.error", :content => "Invalid")

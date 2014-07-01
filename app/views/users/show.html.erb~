@@ -1,4 +1,4 @@
-	<table class="profile" summary="Profile information">
+	<table class="jobseekers" summary="List of job seekers">
 		<tr>
 
 			<td class="main">
@@ -6,22 +6,19 @@
 					<%= gravatar_for @user %>
 					<%= @user.first_name %>
 				</h1>
-				<%= render 'follow_form' if signed_in? %>
-				<% unless @user.microposts.empty? %>
-					<table class="microposts" summary="User microposts">
-						<%= render @microposts %>
+				
+				<%#we use 'if' because if jobseeker.nil is true, we want tell the user
+				<%#<% unless @user.jobseeker.nil? %>
+				<% if @user.jobseeker %>
+					<table class="jobseekers" summary="List of job seekers">
+						<%# this renders a partial _jobseeker.html.erb %>
+						<%= render @jobseeker %>
 					</table>
-					<%= will_paginate @microposts %>
-<% end %>
+						<%#= will_paginate @jobseeker %>
+				<% else %>
+					<h3> Sorry, you don't have any details to be displayed. </h3>
+				<% end %>
+						
 			</td>
-			<h3>
-			<td class="sidebar round">
-			<%@n="#{@user.first_name} #{@user.last_name}"%>
-				<strong>Name</strong> <%= @n %><br />
-				<strong>URL</strong> <%= link_to user_path(@user), @user %><br />
-				<strong>Microposts</strong> <%= @user.microposts.count %>
-				<%= render 'shared/stats' %>
-			</td>
-			</h3>
 		</tr>
 	</table>

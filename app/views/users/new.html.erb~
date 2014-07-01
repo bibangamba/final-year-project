@@ -6,7 +6,7 @@
 	<div class="actions">
     
     <%= f.label :role, "Sign up as a:" %><br>
-    <%= f.radio_button :role, "jobseeker" %>
+    <%= f.radio_button :role, "jobseeker",:required=>"required" %>
     <%= f.label :role, "Job seeker", :value=>"jobseeker",:id=>"label_roles" %><br>
     <%= f.radio_button :role, "employer",:required=>"required" %>
     <%= f.label :role, "Employer", :value=>"employer",:id=>"label_roles" %>

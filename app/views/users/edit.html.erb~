@@ -2,8 +2,9 @@
 	<%= form_for(@user) do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
 	<%= render 'fields', :f => f %>
+	<br>
 	<div class="actions">
-		<%= f.submit "Update", :id=> "signup_btn"%>
+		<%= f.submit "Update", :id=>"update_profile_btn" %>
 	</div>
 <% end %>
 

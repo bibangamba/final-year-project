@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
 	
-	#no need for specifying w/c action since tit applies to both
+	#no need for specifying w/c action since sit applies to both
 	before_filter :authenticate, :only => [:create, :destroy]
 	before_filter :authorized_user, :only => :destroy
 	

@@ -16,9 +16,11 @@ class SessionsController < ApplicationController
   		
   	else
   	  	
-  	#sign_in & redirect_back_or actions is in sessions_helper.rb(for universal access by controllers)
+  	#sign_in & redirect_back_or methods are in sessions_helper.rb(for universal access by controllers)
   		sign_in user
-			redirect_back_or user
+  		
+  		#on sign in, redirects you to the home page
+			redirect_back_or pages_home_path
 			
   	end
   end

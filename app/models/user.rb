@@ -2,11 +2,18 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  last_name            :string(255)
+#  id                   :integer          primary key
+#  first_name           :string(255)
+#  email                :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  encrypted_password   :string(255)
+#  salt                 :string(255)
+#  admin                :boolean
+#  password_reset_token :string(255)
+#  password_sent_at     :datetime
+#  role                 :string(255)
 #
 
 #[NOTE]format inconsistency is used to show different ways of using the rules e. :key => value or key: value
@@ -27,9 +34,12 @@ class User < ActiveRecord::Base
 									:password,
 									:password_confirmation,
 									:role
+
+	#:dependent option deletes all microposts associated with the destroyed user
+	has_one :jobseeker, :foreign_key => "user_id", :dependent => :destroy
 	
 	has_many :microposts, :dependent => :destroy
-	#:dependent option deletes all microposts associated with the destroyed user
+	
 	
 	#specifying the foreign key since rails can't infer
 	has_many :relationships,  :foreign_key => "follower_id",

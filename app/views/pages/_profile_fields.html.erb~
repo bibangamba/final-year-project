@@ -1,0 +1,63 @@
+<h1></h1>
+<%= render 'shared/error_messages', :object => f.object %>
+	
+	
+	<fieldset>
+	<%= label_tag(:dob, "Birthday:") %><br>
+	<div class="select_border" ><%= f.date_select(:dob,:start_year => Date.current.year, :end_year => 1939) %></div>
+	</fieldset><br>
+	
+	<fieldset>
+	<div class="actions">
+    
+    <%= f.label :sex, "Gender:" %><br>
+    <%= f.radio_button :sex, "Female",:required=>"required" %>
+    <%= f.label :sex, "Female", :value=>"female",:id=>"label_roles" %>
+    <%= f.radio_button :sex, "male",:required=>"required" %>
+    <%= f.label :sex, "Male", :value=>"male",:id=>"label_roles" %>
+	</div>
+	</fieldset>
+	
+	    
+	<fieldset>
+		<%= f.label :location, "Location:" %><br>
+		<%= f.text_field :location, :placeholder=> "best location for jobs", :required=> "true"%>
+	</fieldset><br>
+	
+	<fieldset>
+		<%= f.label :phone, "Phone:" %><br>
+		<%= f.text_field :phone, :placeholder=> "for contacting you", :required=> "false"%>
+	</fieldset><br>
+
+	
+	<fieldset>
+
+		<% @qualification = [['None', 'None'],['O level', 'O level'],['A level', 'A level'],['Degree', 'Degree'],['Masters', 'Masters'],['PhD holder', 'PhD holder']] %>
+		
+		<%= label_tag(:qualification, "Qualification:") %><br>
+		<div class="select_border"><%= f.select :qualification, @qualification %></div>
+	</fieldset><br>
+	
+	<fieldset>
+
+		<% @field = [['None', 'None'], ['Accounting/Finance/Insurance', 'Accounting/Finance/Insurance'], ['Administrative/Clerical/Office', 'Administrative/Clerical/Office'], ['Agriculture/Forestry/Fishing', 'Agriculture/Forestry/Fishing'], ['Banking', 'Banking'], ['Building Construction/Skilled Trades', 'Building Construction/Skilled Trades'], ['Business/Strategic Management', 'Business/Strategic Management'], ['Creative/Design/Architectural', 'Creative/Design/Architectural'], ['Customer Support/Client Care', 'Customer Support/Client Care'], ['Editorial/Writing', 'Editorial/Writing'], ['Education', 'Education'], ['Engineering', 'Engineering'], ['Entertainment Venues and Theaters', 'Entertainment Venues and Theaters'], ['Food Services/Hospitality', 'Food Services/Hospitality'], ['Government and Military', 'Government and Military'], ['Hotels and Lodging', 'Hotels and Lodging'], ['Human Resources', 'Human Resources'], ['Installation/Maintenance/Repair', 'Installation/Maintenance/Repair'], ['IT/Software Development', 'IT/Software Development'], ['Legal', 'Legal'], ['Logistics/Transportation', 'Logistics/Transportation'], ['Management Consulting Services', 'Management Consulting Services'], ['Manufacturing', 'Manufacturing'], ['Marketing/Adevertising', 'Marketing/Adevertising'], ['Medical/Health', 'Medical/Health'], ['Printing and Publishing', 'Printing and Publishing'], ['Project/Program Management', 'Project/Program Management'], ['Public Relations', 'Public Relations'], ['Real Estate / Property Management', 'Real Estate / Property Management'], ['Security/Protective Services', 'Security/Protective Services'], ['Sales', 'Sales']] %>
+		
+		<%= label_tag(:field, "Field:") %><br>
+		<div class="select_border"><%= f.select :field, @field %></div>
+	</fieldset><br>
+		    
+	<fieldset>
+		<%= f.label :experience, "Experience:" %><br>
+		<%= f.text_field :experience, :placeholder=> "your experience in years", :required=> "true"%>
+	</fieldset><br>
+		
+	<fieldset>
+		<%= f.label :cv, "Curriculam Vitae:" %><br>
+	  <%= f.file_field :cv %>
+	</fieldset><br>
+		
+	<fieldset>
+		<%= f.label :summary, "Summary:" %><br>
+		<%= f.text_area :summary, :placeholder=> "short summary about you...", :required=> "false"%><br>
+	</fieldset><br>
+
