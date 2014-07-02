@@ -20,7 +20,6 @@ class UsersController < ApplicationController
   def show
 		@user = User.find(params[:id])
 		
-		#condition to check that jobseeker != nil. if it is, don't paginate
 		if @user.jobseeker
 			@jobseeker = @user.jobseeker#.paginate(:page => params[:page])
 			@title = @user.first_name

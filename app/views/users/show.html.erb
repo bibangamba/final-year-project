@@ -4,18 +4,19 @@
 			<td class="main">
 				<h1>
 					<%= gravatar_for @user %>
-					<%= @user.first_name %>
+					<%= @user.first_name %> <%= @user.last_name %>
 				</h1>
 				
 				<%#we use 'if' because if jobseeker.nil is true, we want tell the user
 				<%#<% unless @user.jobseeker.nil? %>
+				
 				<% if @user.jobseeker %>
 					<table class="jobseekers" summary="List of job seekers">
-						<%# this renders a partial _jobseeker.html.erb %>
+						<%# this renders a partial '_jobseeker.html.erb' located in jobseekers/view %>
 						<%= render @jobseeker %>
 					</table>	
 				<% else %>
-					<h3> Sorry, you don't have any details to be displayed. </h3>
+					<h3> Sorry, we don't have any profile information on you.<%= link_to "Create", new_jobseeker_path %> your profile.</h3>
 				<% end %>
 						
 			</td>

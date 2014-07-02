@@ -286,7 +286,7 @@ input[type="submit"] {
 	border-color: #129FEA;
 	}
 
-#new_jobseeker select:focus, #new_jobseeker select:hover {
+#new_jobseeker select:focus, #new_jobseeker select:hover, .edit_jobseeker select:focus, .edit_jobseeker select:hover {
   border-color: #129FEA;
 }
 
@@ -342,21 +342,27 @@ margin-bottom: 10px;
 }
 	/*Error messages*/
 .field_with_errors {
-	margin-top: 10px;
-	padding: 2px;
-	border:1px solid red;
+	margin-top: 0px;
+	padding: 0px;
+	border:3px #DD3F3F;
 /*	background-color: red;*/
 	display: table;
 	}
 
+.field_with_errors{
+	display: inline-block;
+	padding: 2px;
+}
+
 .field_with_errors label {
-	color: #fff;
+	color: #DD3F3F;
 	}
 
 #error_explanation {
 	width: 400px;
-	border: 1px solid red;
-	padding: 7px;
+	border: 2px;
+	border-color:#DD3F3F;
+	padding: 10px;
 	padding-bottom: 12px;
 	margin-bottom: 20px;
 	background-color: #f0f0f0;
@@ -368,7 +374,7 @@ margin-bottom: 10px;
 	padding: 5px 5px 5px 15px;
 	font-size: 12px;
 	margin: -7px;
-	background-color: #c00;
+	background-color: #DD3F3F;
 	color: #fff;
 	}
 

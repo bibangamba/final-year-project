@@ -1,6 +1,32 @@
-<tr>
-	<td class="jobseeker">
-		<h1><%= @user.first_name %>  <%= @user.last_name %></h1>
-		<h4><span class="content"><%= @user.jobseeker.dob %> <br> <%= @user.jobseeker.sex%></span></h4>
-	</td>
-</tr>
+<h4>
+	<span class="content">
+
+		<% now = Time.now.utc.to_date %>
+		<%= label_tag(:dob, "Age:") %>
+		<h4><%= now.year - @user.jobseeker.dob.year %> years old</h4><br>
+
+		<%= label_tag(:sex, "Gender:") %>
+		<h4><%= @user.jobseeker.sex %></h4><br>
+
+		<%= label_tag(:location, "Prefered job location:") %>
+		<h4><%= @user.jobseeker.location %></h4><br>
+		
+		<%= label_tag(:phone, "Phone number:") %>
+		<h4><%= @user.jobseeker.phone %></h4><br>
+		
+		<%= label_tag(:qualification, "Qualification:") %>
+		<h4><%= @user.jobseeker.qualification %></h4><br>
+		
+		<%= label_tag(:field, "Field:") %>
+		<h4><%= @user.jobseeker.field %></h4><br>
+
+		<%# 'pluralize' - helper method: makes plurals of a singular word if the supplied integer value is greater than 1 %>
+		<%= label_tag(:experience, "Your experience in the field:") %>
+		<h4><%= pluralize(@user.jobseeker.experience,"year") %></h4><br>
+		
+		<%= label_tag(:summary, "About you:") %>
+		<h4><%= @user.jobseeker.summary %></h4><br>
+		<%%>	
+		
+	</span>
+</h4>

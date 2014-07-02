@@ -33,7 +33,19 @@ class Jobseeker < ActiveRecord::Base
 		belongs_to :user
 		
 		validates_presence_of :dob, :sex, :location, :phone, :qualification, :experience, :field
-		validates :summary, :length => {:maximum=>200}
+		validates :summary, :length => {:maximum=>400}
+		validates :phone, :length => {:maximum=>13, :minimum=>10}
+		validates :experience, :length => {:maximum=>2, :minimum=>1}
+		# 'only_integer' uses regx: /\A[+-]?\d+\Z/
+		validates_numericality_of :phone, :experience, :only_integer => true
+		validate :over_15
+		
+		
+	def over_15
+		if dob + 15.years >= Date.today
+		  errors.add(:dob,": your age can't be under 15")
+		end
+	end
 		
 		#returns jobseeker details starting with most recently added ones
 		default_scope :order => 'jobseekers.created_at DESC'

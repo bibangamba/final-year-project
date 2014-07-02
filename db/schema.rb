@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623170653) do
+ActiveRecord::Schema.define(version: 20140702150628) do
 
   create_table "jobseekers", force: true do |t|
     t.integer  "user_id"
     t.date     "dob"
     t.string   "sex"
     t.string   "location"
-    t.integer  "phone"
+    t.string   "phone"
     t.string   "qualification"
-    t.integer  "experience"
+    t.string   "experience"
     t.string   "field"
     t.string   "cv_name"
     t.text     "summary"

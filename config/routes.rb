@@ -24,7 +24,6 @@ StaticDynamic::Application.routes.draw do
   get "pages/contact"
   get "pages/about"
   get "pages/help"
-  get "pages/profile"
   
 
   get '/signup', :to => 'users#new'

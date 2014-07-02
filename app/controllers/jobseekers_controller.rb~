@@ -8,8 +8,8 @@ class JobseekersController < ApplicationController
 	end
 	
 	def new
-		@jobseeker = current_user.build_jobseeker
-  	@title = "Save Profile"
+    @jobseeker = current_user.build_jobseeker
+  	@title = "Creae Your Profile"
 	end
 	
 	#allows creation of jobseeker details on signup/posting them
@@ -20,7 +20,7 @@ class JobseekersController < ApplicationController
 		#if saving the details to the db returns true...else...
 		if @jobseeker.save
 			flash[:success] = "success! your profile information has been saved."			
-			redirect_to root_path
+			redirect_to current_user
 		else
 			#flash[:error] = @seeker
 			flash[:error] = "sorry, failed to save your profile information"
@@ -30,14 +30,15 @@ class JobseekersController < ApplicationController
 	
 	#directs to update if its an edit and to save profile if its the first time
 	def edit
-
-		if User.find(params[:id])
 			@user = User.find(params[:id])
-			@jobseeker = Jobseeker.find_by(:user_id => @user.id)
+			@jobseeker1 = Jobseeker.find_by(:user_id => @user.id)
+			
+		if @jobseeker1
+			@jobseeker = @jobseeker1
 			@title = "Edit Profile"
 		else
 			flash[:notice] = "we don't have your profile yet, create one!"
-			redirect_to pages_profile_page
+			render 'new'
 		end
 		
 	end
@@ -48,7 +49,7 @@ class JobseekersController < ApplicationController
 
 		if @jobseeker.update_attributes(params[:jobseeker])
 			flash[:success] = "profile updated."
-			redirect_to @user
+			redirect_to current_user
 		else
 			@title = "Edit user"
 			render 'edit'
@@ -58,4 +59,11 @@ class JobseekersController < ApplicationController
 	def destroy
 		
 	end
+	
+	def upload
+  uploaded_io = params[:jobseeker][:picture]
+  File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+    file.write(uploaded_io.read)
+  end
+end
 end

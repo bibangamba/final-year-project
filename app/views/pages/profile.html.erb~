@@ -1,7 +1,7 @@
 <h1>Save your profile</h1>
 
 <%= form_for(@jobseeker) do |f| %>
-	<%= render 'profile_fields', :f => f %><br><br><br><br>
+	<%= render 'shared/profile_fields', :f => f %><br><br><br><br>
 	<fieldset>
 	<div class="actions">
 		<%= f.submit "Save Profile", :id=>"edit_profile_btn" %>

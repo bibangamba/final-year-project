@@ -25,10 +25,6 @@ StaticDynamic::Application.routes.draw do
   get "pages/about"
   get "pages/help"
   get "pages/profile"
-  get "pages/edit_profile/:id"
-  put "pages/edit_profile/:id"
-  patch "pages/edit_profile:id"
-
   
 
   get '/signup', :to => 'users#new'
