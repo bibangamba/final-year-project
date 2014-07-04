@@ -34,6 +34,9 @@ StaticDynamic::Application.routes.draw do
 	get '/about', :to => 'pages#about'	#but troubleshooting(integration tests))say 
 	get '/help', :to => 'pages#help'	#use 'get' so...
 	
+	get 'jobseekers/download_cv'
+	get 'jobseekers/view_cv'
+	
 	root :to => 'pages#home'
   
   

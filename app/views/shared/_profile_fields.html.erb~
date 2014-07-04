@@ -21,7 +21,7 @@
 	    
 	<fieldset>
 		<%= f.label :location, "Location:" %><br>
-		<%= f.text_field :location, :placeholder=> "prefered location for a job", :required=> "true"%>
+		<%= f.text_field :location, :placeholder=> "prefered location for a job e.g gulu", :required=> "true"%>
 	</fieldset><br>
 	
 	<fieldset>
@@ -52,7 +52,7 @@
 	</fieldset><br>
 		
 	<fieldset>
-		<%= f.label :cv, "Curriculam Vitae:" %><br>
+		<%= f.label :cv, "Curriculam Vitae (must be a pdf):" %><br>
 	  <%= f.file_field :cv %>
 	</fieldset><br>
 		

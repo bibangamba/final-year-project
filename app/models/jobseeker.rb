@@ -11,7 +11,7 @@
 #  qualification :string(255)
 #  experience    :integer
 #  field         :string(255)
-#  cv_name       :string(255)
+#  cv_type       :string(255)
 #  summary       :text
 #  created_at    :datetime
 #  updated_at    :datetime
@@ -27,7 +27,7 @@ class Jobseeker < ActiveRecord::Base
 										:qualification,#degeree
 										:experience,#years{1,2,3}
 										:field,#computer science
-										:cv_name,#id
+										:cv_type,#pdf
 										:summary#abot you
 										
 		belongs_to :user
@@ -39,12 +39,19 @@ class Jobseeker < ActiveRecord::Base
 		# 'only_integer' uses regx: /\A[+-]?\d+\Z/
 		validates_numericality_of :phone, :experience, :only_integer => true
 		validate :over_15
+		validate :cv_format
+
 		
 		
 	def over_15
 		if dob + 15.years >= Date.today
 		  errors.add(:dob,": your age can't be under 15")
 		end
+	end
+	
+
+	def cv_format
+		errors.add(:cv_type, "must be a pdf") if self.cv_type != "application/pdf"
 	end
 		
 		#returns jobseeker details starting with most recently added ones

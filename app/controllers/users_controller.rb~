@@ -20,7 +20,6 @@ class UsersController < ApplicationController
   def show
 		@user = User.find(params[:id])
 		
-		#condition to check that jobseeker != nil. if it is, don't paginate
 		if @user.jobseeker
 			@jobseeker = @user.jobseeker#.paginate(:page => params[:page])
 			@title = @user.first_name
@@ -56,8 +55,9 @@ class UsersController < ApplicationController
 	end
 	
 	def edit
-		#@user = User.find(params[:id])#[we remove it coz its defined in correct_user mthd(at the bottom of this controller)]
+		@user = User.find(params[:id])#[we remove it coz its defined in correct_user mthd(at the bottom of this controller)]
 		@title = "Edit user"
+		
 	end
 	
 	def update

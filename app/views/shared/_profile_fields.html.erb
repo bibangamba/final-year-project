@@ -52,8 +52,8 @@
 	</fieldset><br>
 		
 	<fieldset>
-		<%= f.label :cv, "Curriculam Vitae:" %><br>
-	  <%= f.file_field :cv %>
+		<%= f.label :cv, "Curriculam Vitae (must be a pdf):" %><br>
+	  <%= f.file_field :cv, :accept=>"application/pdf" %>
 	</fieldset><br>
 		
 	<fieldset>

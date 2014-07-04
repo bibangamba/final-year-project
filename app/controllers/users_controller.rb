@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 	end
 	
 	def edit
-		#@user = User.find(params[:id])#[we remove it coz its defined in correct_user mthd(at the bottom of this controller)]
+		@user = User.find(params[:id])#[we remove it coz its defined in correct_user mthd(at the bottom of this controller)]
 		@title = "Edit user"
 	end
 	

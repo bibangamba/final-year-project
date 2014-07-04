@@ -1,0 +1,4 @@
+class RenameCvNameInUsers < ActiveRecord::Migration
+  def change
+  end
+end

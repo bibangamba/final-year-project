@@ -17,6 +17,7 @@ StaticDynamic::Application.routes.draw do
 	resources :relationships, :only => [:create, :destroy]  
 	resources :password_resets
 	resources :jobseekers  
+	get '/jobseekers/:id/view_cv', to: 'jobseekers#view_cv'
 	  
   #get "users/new" #no longer needed since the resources line above automatically adds these paths(is RESTful Users resource)
   
@@ -24,7 +25,6 @@ StaticDynamic::Application.routes.draw do
   get "pages/contact"
   get "pages/about"
   get "pages/help"
-  get "pages/profile"
   
 
   get '/signup', :to => 'users#new'
@@ -34,6 +34,10 @@ StaticDynamic::Application.routes.draw do
   get '/contact', :to => 'pages#contact'	#book says to use 'match' in place of get 
 	get '/about', :to => 'pages#about'	#but troubleshooting(integration tests))say 
 	get '/help', :to => 'pages#help'	#use 'get' so...
+	
+	#get '/jobseekers/:id/download_cv'
+	#get '/jobseekers/:id/view_cv'
+
 	
 	root :to => 'pages#home'
   

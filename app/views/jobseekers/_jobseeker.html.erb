@@ -1,6 +1,6 @@
 <h4>
 	<span class="content">
-
+		
 		<% now = Time.now.utc.to_date %>
 		<%= label_tag(:dob, "Age:") %>
 		<h4><%= now.year - @user.jobseeker.dob.year %> years old</h4><br>
@@ -23,6 +23,9 @@
 		<%# 'pluralize' - helper method: makes plurals of a singular word if the supplied integer value is greater than 1 %>
 		<%= label_tag(:experience, "Your experience in the field:") %>
 		<h4><%= pluralize(@user.jobseeker.experience,"year") %></h4><br>
+		
+		<%#view_cv is an action in jobseekers controller%>
+		<h4><%= link_to "Veiw your CV", jobseekers_view_cv_path, :target => "_blank" %> <h3>OR</h3> <%= link_to "Download it", jobseekers_download_cv_path, :target => "_blank" %></h4><br>
 		
 		<%= label_tag(:summary, "About you:") %>
 		<h4><%= @user.jobseeker.summary %></h4><br>

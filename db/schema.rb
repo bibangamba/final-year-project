@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702150628) do
+ActiveRecord::Schema.define(version: 20140704141431) do
 
   create_table "jobseekers", force: true do |t|
     t.integer  "user_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140702150628) do
     t.string   "qualification"
     t.string   "experience"
     t.string   "field"
-    t.string   "cv_name"
+    t.string   "cv_type"
     t.text     "summary"
     t.datetime "created_at"
     t.datetime "updated_at"
