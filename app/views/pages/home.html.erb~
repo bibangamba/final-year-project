@@ -14,17 +14,21 @@
 				<div id="info">
 				<h2>mechanic wanted</h2>
 				<h3>salary per month:<i> UGX 250,000</i></h3>
-				<h1>location:<i> wandegeya </i></h3><h3>posted by:<i> matovu </i></h3>
+				<h3>location:<i> wandegeya </i></h3><h3>posted by:<i> matovu </i></h3>
 				</div>
 			<hr>
 		</li>
 	</ul>
 </div>
 <% else %>
-	<h1>Static_Dynamic</h1>
-	<p>
-		This is the home page for the<a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-sample application.
-	</p>
-	<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+	<div class="splash">
+        <h1 class="splash-head">JOB RADAR</h1>
+        <p class="splash-subhead">
+            Every Job At Your Finger Tips 
+        </p>
+        <p>
+         <%= link_to "Sign up now!", signup_path, :class=>"splash_btn" %>
+        </p>
+    </div>
+	
 <% end %>

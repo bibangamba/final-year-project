@@ -21,10 +21,14 @@
 	</ul>
 </div>
 <% else %>
-	<h1>Static_Dynamic</h1>
-	<p>
-		This is the home page for the<a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-sample application.
-	</p>
-	<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+	<div class="splash">
+        <h1 class="splash-head">JOB RADAR</h1>
+        <p class="splash-subhead">
+            Every Job At Your Finger Tips 
+        </p>
+        <p id="splash_btn">
+         <%= link_to "Sign up now!", signup_path, :class=>"splash_btn" %>
+        </p>
+    </div>
+	
 <% end %>

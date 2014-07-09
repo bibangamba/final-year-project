@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 			sign_in @user #signs in the signed up user
 			flash[:success] = "Hi #{@user.first_name}, welcome to JobRadar. "
 			#redirect_to @user
-			redirect_to pages_profile_path
+			redirect_to new_jobseeker_path
 		else
 			@title = "Sign up"
 			render 'new'

@@ -12,22 +12,29 @@ class JobseekersController < ApplicationController
 		@user = current_user.id
 		@jobseeker = Jobseeker.find_by!(:user_id => @user)
 		
-		if @action == 'download_cv'
-			#send file snds the pdf for downloading
-			send_file Rails.root.join('public', 'uploads', @jobseeker.id.to_s ), :type=>"application/pdf", :x_sendfile=>true
+		if File.exist?(Rails.root.join('public', 'uploads', @jobseeker.id.to_s ))
 			
-  	elsif @action == 'view_cv'
-			#sends file to user but for renering in the browser
-  		send_file Rails.root.join('public', 'uploads', @jobseeker.id.to_s ),:disposition => 'inline', :type=>"application/pdf", :x_sendfile=>true
-  		
+			if @action == 'download_cv'
+				#send file snds the pdf for downloading
+				send_file Rails.root.join('public', 'uploads', @jobseeker.id.to_s ), :type=>"application/pdf", :x_sendfile=>true
+			
+			elsif @action == 'view_cv'
+				#sends file to user but for renering in the browser
+				send_file Rails.root.join('public', 'uploads', @jobseeker.id.to_s ),:disposition => 'inline', :type=>"application/pdf", :x_sendfile=>true
+				
+			else
+				redirect_to user_path(current_user)
+			end
+			
   	else
-  		redirect_to user_path(current_user)
+  		flash[:notice]="you haven't uploaded a cv yet! Upload one."
+			render 'edit'
   	end
 				
 	end
 	
 	def new
-    @jobseeker = current_user.build_jobseeker
+    @jobseeker = current_user.build_jobseeker(:user_id => params[:id])
   	@title = "Creae Your Profile"
 	end
 	
@@ -42,9 +49,7 @@ class JobseekersController < ApplicationController
 			flash[:success] = "success! your profile information has been saved."			
 			redirect_to current_user
 		else
-			#flash[:error] = @seeker
-			flash[:error] = "sorry, failed to save your profile information"
-			render 'pages/home'
+			render 'new'
 		end
 	end
 	
@@ -58,7 +63,8 @@ class JobseekersController < ApplicationController
 			@title = "Edit Profile"
 		else
 			flash[:notice] = "we don't have your profile yet, create one!"
-			render 'new'
+			#don't use render 'new' because it refers to @jobseeker from this action(and in this section of action, its nil)
+			redirect_to new_jobseeker_path
 		end
 		
 	end

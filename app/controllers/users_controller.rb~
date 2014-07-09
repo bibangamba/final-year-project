@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 			sign_in @user #signs in the signed up user
 			flash[:success] = "Hi #{@user.first_name}, welcome to JobRadar. "
 			#redirect_to @user
-			redirect_to pages_profile_path
+			redirect_to new
 		else
 			@title = "Sign up"
 			render 'new'
@@ -57,7 +57,6 @@ class UsersController < ApplicationController
 	def edit
 		@user = User.find(params[:id])#[we remove it coz its defined in correct_user mthd(at the bottom of this controller)]
 		@title = "Edit user"
-		
 	end
 	
 	def update

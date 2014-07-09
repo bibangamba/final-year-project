@@ -1,6 +1,7 @@
 <h1></h1>
 <%= render 'shared/error_messages', :object => f.object %>
 	
+	<h4 align="right"><a href="#upload_cv">upload your cv</a></h4>
 	
 	<fieldset>
 	<%= label_tag(:dob, "Birthday:") %><br>
@@ -50,11 +51,11 @@
 		<%= f.label :experience, "Experience:" %><br>
 		<%= f.text_field :experience, :placeholder=> "your experience in years", :required=> "true"%>
 	</fieldset><br>
-		
+	<a name="upload_cv">	
 	<fieldset>
 		<%= f.label :cv, "Curriculam Vitae (must be a pdf):" %><br>
 	  <%= f.file_field :cv, :accept=>"application/pdf" %>
-	</fieldset><br>
+	</fieldset></a><br>
 		
 	<fieldset>
 		<%= f.label :summary, "Summary:" %><br>
