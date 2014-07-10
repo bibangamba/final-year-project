@@ -1,0 +1,4 @@
+class ChangeNameToFirstNameInUsers < ActiveRecord::Migration
+  def change
+  end
+end
