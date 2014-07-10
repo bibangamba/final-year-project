@@ -4,5 +4,5 @@
 # Mime::Type.register "text/richtext", :rtf
 # Mime::Type.register_alias "text/html", :iphone
 
-#added so rails can recognize pdf xtnsions as files
-Mime::Type.register "application/pdf", :pdf
+#was already initialised so kept getting a warning
+#Mime::Type.register "application/pdf", :pdf

@@ -3,7 +3,7 @@ module SessionsHelper
 	
 	def sign_in(user)
 	  
-	  #remember me sets cokkie to be permanent or not
+	  #status of 'remember me' checkbox sets cookie to be permanent or not
 	  if params[:remember_me]
   		cookies.permanent.signed[:remember_token] = [user.id, user.salt]
   		#[permanent=20.years.from_now(according to rails), signed=secure(tells browser not to show user id )]

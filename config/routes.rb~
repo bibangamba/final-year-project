@@ -1,5 +1,10 @@
 StaticDynamic::Application.routes.draw do
 
+  get "jobs/new"
+  get "jobs/create"
+  get "jobs/edit"
+  get "jobs/update"
+  get "jobs/destroy"
   #get "password_resets/new" #we make it a rsrc instd
   get "sessions/new"
 	#allows REST-like urls for users to work(create, new, destroy etc actions)
@@ -16,8 +21,8 @@ StaticDynamic::Application.routes.draw do
 	resources :microposts, :only => [:create, :destroy]
 	resources :relationships, :only => [:create, :destroy]  
 	resources :password_resets
-	resources :jobseekers  
-	get '/jobseekers/:id/view_cv', to: 'jobseekers#view_cv'
+	resources :jobseekers
+	resources :jobs
 	  
   #get "users/new" #no longer needed since the resources line above automatically adds these paths(is RESTful Users resource)
   
@@ -35,9 +40,8 @@ StaticDynamic::Application.routes.draw do
 	get '/about', :to => 'pages#about'	#but troubleshooting(integration tests))say 
 	get '/help', :to => 'pages#help'	#use 'get' so...
 	
-	#get '/jobseekers/:id/download_cv'
-	#get '/jobseekers/:id/view_cv'
-
+	get 'jobseekers/download_cv'
+	get 'jobseekers/view_cv'
 	
 	root :to => 'pages#home'
   

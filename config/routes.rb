@@ -16,7 +16,8 @@ StaticDynamic::Application.routes.draw do
 	resources :microposts, :only => [:create, :destroy]
 	resources :relationships, :only => [:create, :destroy]  
 	resources :password_resets
-	resources :jobseekers  
+	resources :jobseekers
+	resources :jobs
 	  
   #get "users/new" #no longer needed since the resources line above automatically adds these paths(is RESTful Users resource)
   

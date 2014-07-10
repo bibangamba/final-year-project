@@ -5,10 +5,21 @@
 			<li><%= link_to "Home", root_path %></li>
 
 			<% if signed_in? %>
-				<li><%= link_to "Users", users_path %></li>
-				<li><%= link_to "Profile", current_user %></li>
-				<li><%= link_to "Edit Profile", edit_jobseeker_path(current_user) %></li>
+				
+				<% if current_user.admin=="yes"%>
+					<li><%= link_to "Users", users_path %></li>
+				<% end %>
+				
+				<%if current_user.role=="jobseeker"%>
+					<li><%= link_to "Profile", current_user %></li>
+					<li><%= link_to "Edit Profile", edit_jobseeker_path(current_user) %></li>
+				<%elsif current_user.role=="employer"%>
+					<li><%= link_to "Post Job", new_job_path %></li>				
+				<% end %>
+				
 				<li><%= link_to "Settings", edit_user_path(current_user) %></li>
+				
+				
 			<% end %>
 
 			<li><%= link_to "Help", help_path %></li>

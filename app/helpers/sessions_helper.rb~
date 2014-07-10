@@ -46,7 +46,7 @@ module SessionsHelper
 			clear_return_to
 		end
 		
-		#boolean method i.e. 'mthd?' checks if retur
+		#boolean method i.e. 'mthd?' checks if it returns true or false
 		def current_user?(user)
 			user == current_user
 		end
