@@ -78,6 +78,9 @@ StaticDynamic::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
   
+  #for the mailer to work
+  config.action_mailer.default_url_options = { :host => 'yourapp.heroku.com' }
+  
   #for downloading files(using send file) directly from drive(faster)
   config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
 	config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
