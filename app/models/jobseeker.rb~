@@ -7,9 +7,9 @@
 #  dob           :date
 #  sex           :string(255)
 #  location      :string(255)
-#  phone         :integer
+#  phone         :string(255)
 #  qualification :string(255)
-#  experience    :integer
+#  experience    :string(255)
 #  field         :string(255)
 #  cv_type       :string(255)
 #  summary       :text
@@ -36,6 +36,7 @@ class Jobseeker < ActiveRecord::Base
 		validates :summary, :length => {:maximum=>400}
 		validates :phone, :length => {:maximum=>13, :minimum=>10}
 		validates :experience, :length => {:maximum=>2, :minimum=>1}
+		validates :experience, :numericality => { :greater_than_or_equal_to => 0 }
 		# 'only_integer' uses regx: /\A[+-]?\d+\Z/
 		validates_numericality_of :phone, :experience, :only_integer => true
 		validate :over_15
@@ -51,7 +52,7 @@ class Jobseeker < ActiveRecord::Base
 	
 
 	def cv_format
-		errors.add(:cv_type, "must be a pdf") if self.cv_type == "application/pdf"
+		errors.add(:cv_type, "must be a pdf") if self.cv_type != "application/pdf"
 	end
 		
 		#returns jobseeker details starting with most recently added ones

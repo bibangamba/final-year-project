@@ -46,7 +46,7 @@ class Job < ActiveRecord::Base
 	validates :contact_phone, :length => {:maximum=>13, :minimum=>10}
 	validates :experience, :length => {:maximum=>2, :minimum=>1}
 	# 'only_integer' uses regx: /\A[+-]?\d+\Z/
-	validates_numericality_of :contact_phone, :experience, :only_integer => true
+	validates_numericality_of :phone, :experience, :only_integer => true
 	
 
 end

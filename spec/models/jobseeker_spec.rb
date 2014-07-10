@@ -7,11 +7,11 @@
 #  dob           :date
 #  sex           :string(255)
 #  location      :string(255)
-#  phone         :integer
+#  phone         :string(255)
 #  qualification :string(255)
-#  experience    :integer
+#  experience    :string(255)
 #  field         :string(255)
-#  cv_name       :string(255)
+#  cv_type       :string(255)
 #  summary       :text
 #  created_at    :datetime
 #  updated_at    :datetime
