@@ -79,7 +79,7 @@ StaticDynamic::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   
   #for the mailer to work
-  config.action_mailer.default_url_options = { :host => 'yourapp.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'jobradar.herokuapp.com' }
   
   #for downloading files(using send file) directly from drive(faster)
   config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
