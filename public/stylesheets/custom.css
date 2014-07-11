@@ -174,7 +174,7 @@ fieldset:last-child {
 	margin: 0;
 }
 
-input[type="text"], input[type="password"], #jobseeker_summary {
+input[type="text"], input[type="password"], #jobseeker_summary, #job_details, #job_job_description {
 	padding: 5px 8px;
 	margin: 5px;
 	font-size: 1.2em;
@@ -195,7 +195,7 @@ input[type="text"], input[type="password"], #jobseeker_summary {
 #new_user fieldset input[id="user_email"],.edit_user fieldset input[id="user_email"]{width:460px;}
 
 	/*creates blue outline on focus*/
-input[type="text"]:focus,input[type="text"]:hover, input[type="password"]:focus, input[type="password"]:hover, #jobseeker_summary:focus, #jobseeker_summary:hover{
+input[type="text"]:focus,input[type="text"]:hover, input[type="password"]:focus, input[type="password"]:hover, #jobseeker_summary:focus, #jobseeker_summary:hover,#job_details:focus,#job_details:hover, #job_job_description:focus, #job_job_description:hover{
 	outline:none;
   border-color:#129FEA;
 }
@@ -300,15 +300,15 @@ input[type="submit"] {
 }
 
 
-#new_jobseeker input[type="text"], .edit_jobseeker input[type="text"]{
+#new_jobseeker input[type="text"], .edit_jobseeker input[type="text"],#new_job input[type="text"], .edit_job input[type="text"]{
 	width:460px;
 }
 
-#new_jobseeker select option, .edit_jobseeker select option {
+#new_jobseeker select option, .edit_jobseeker select option,#new_job select option, .edit_job select option {
     text-shadow:0 1px 0 rgba(0,0,0,0.4);
 }
 
-#new_jobseeker select, .edit_jobseeker select{
+#new_jobseeker select, .edit_jobseeker select,#new_job select, .edit_job select{
 	padding: 5px;
 	font-size: 16px;
 	line-height: 1;
@@ -342,11 +342,12 @@ input[type="submit"] {
 	border-color: #129FEA;
 	}
 
-#new_jobseeker select:focus, #new_jobseeker select:hover, .edit_jobseeker select:focus, .edit_jobseeker select:hover {
+#new_jobseeker select:focus, #new_jobseeker select:hover, .edit_jobseeker select:focus, .edit_jobseeker select:hover,
+#new_job select:focus, #new_job select:hover, .edit_job select:focus, .edit_job select:hover  {
   border-color: #129FEA;
 }
 
-#jobseeker_summary{
+#jobseeker_summary,#job_job_description,#job_details{
 		height: 90px;
 		width: 460px;
 		font: inherit;

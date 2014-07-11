@@ -1,0 +1,79 @@
+<h1></h1>
+<%= render 'shared/error_messages', :object => f.object %>
+	
+	<fieldset>
+		<%= label_tag(:title, "Job Title:") %><br>
+		<%= f.text_field :title, :placeholder=> "e.g Marketing Manager", :required=> "true"%>
+	</fieldset><br>
+	
+	<fieldset>
+		<%= label_tag(:job_description, "Job description:") %><br>
+		<%= f.text_area :job_description, :placeholder=> "very short summary of the job.(max is 160 characters)", :required=> "true"%>
+	</fieldset><br><br><br><br>
+	
+	
+	<fieldset>
+
+		<% @category = [['None', 'None'], ['Accounting/Finance/Insurance', 'Accounting/Finance/Insurance'], ['Administrative/Clerical/Office', 'Administrative/Clerical/Office'], ['Agriculture/Forestry/Fishing', 'Agriculture/Forestry/Fishing'], ['Banking', 'Banking'], ['Building Construction/Skilled Trades', 'Building Construction/Skilled Trades'], ['Business/Strategic Management', 'Business/Strategic Management'], ['Creative/Design/Architectural', 'Creative/Design/Architectural'], ['Customer Support/Client Care', 'Customer Support/Client Care'], ['Editorial/Writing', 'Editorial/Writing'], ['Education', 'Education'], ['Engineering', 'Engineering'], ['Entertainment Venues and Theaters', 'Entertainment Venues and Theaters'], ['Food Services/Hospitality', 'Food Services/Hospitality'], ['Government and Military', 'Government and Military'], ['Hotels and Lodging', 'Hotels and Lodging'], ['Human Resources', 'Human Resources'], ['Installation/Maintenance/Repair', 'Installation/Maintenance/Repair'], ['IT/Software Development', 'IT/Software Development'], ['Legal', 'Legal'], ['Logistics/Transportation', 'Logistics/Transportation'], ['Management Consulting Services', 'Management Consulting Services'], ['Manufacturing', 'Manufacturing'], ['Marketing/Adevertising', 'Marketing/Adevertising'], ['Medical/Health', 'Medical/Health'], ['Printing and Publishing', 'Printing and Publishing'], ['Project/Program Management', 'Project/Program Management'], ['Public Relations', 'Public Relations'], ['Real Estate / Property Management', 'Real Estate / Property Management'], ['Security/Protective Services', 'Security/Protective Services'], ['Sales', 'Sales']] %>
+		
+		<%= label_tag(:category, "Category:") %><br>
+		<div class="select_border"><%= f.select :category, @category %></div>
+	</fieldset><br>
+	
+	    
+	<fieldset>
+		<%= f.label :location, "Location:" %><br>
+		<%= f.text_field :location, :placeholder=> "primary location for job attachment", :required=> "true"%>
+	</fieldset><br>
+
+	<fieldset>
+		<%= f.label :vacancies, "Number of places available:" %><br>
+		<%= f.text_field :vacancies, :placeholder=> "number of vacancies must be a number", :required=> "true"%>
+	</fieldset><br>
+	
+	<fieldset>
+		<%= f.label :company, "Organisation/Company name:" %><br>
+		<%= f.text_field :company, :placeholder=> "name of company job is attached to", :required=> "true"%>
+	</fieldset><br>
+
+	<fieldset>
+		<%= f.label :contact_email, "Email:" %><br>
+		<%= f.text_field :contact_email, :placeholder=> "email format must be valid", :required=> "true"%>
+	</fieldset><br>
+	
+	<fieldset>
+		<%= f.label :contact_phone, "Phone:" %><br>
+		<%= f.text_field :contact_phone, :placeholder=> "how the jobseeker might choose to contact you", :required=> "true"%>
+	</fieldset><br>
+	
+	<fieldset>
+		<%= f.label :deadline, "Closing date:" %><br>
+		<%= f.text_field :deadline, :placeholder=> "last date for recieving applications for the job", :required=> "true"%>
+	</fieldset><br>
+
+	<fieldset>
+
+		<% @qualification = [['None', 'None'],['O level', 'O level'],['A level', 'A level'],['Certificate', 'Certificate'],['Diploma', 'Diploma'],['Degree', 'Degree'],['Masters', 'Masters'],['PhD holder', 'PhD holder']] %>
+		
+		<%= label_tag(:qualification, "Minimum qualification required:") %><br>
+		<div class="select_border"><%= f.select :qualification, @qualification %></div>
+	</fieldset><br>
+	
+	<fieldset>
+		<%= f.label :experience, "Minimum required experience:" %><br>
+		<%= f.text_field :experience, :placeholder=> "if its nothing please, enter 0", :required=> "true"%>
+	</fieldset><br>
+	
+	<fieldset>
+
+		<% @type = [['None', 'None'],['Internship', 'Internship'],['Volunteer', 'Volunteer'],['Freelance', 'Freelance'],['Part-time', 'Part-time'],['Full-time', 'Full-time']] %>
+		
+		<%= label_tag(:job_type, "Job type:") %><br>
+		<div class="select_border"><%= f.select :job_type, @type %></div>
+	</fieldset><br>
+		
+	<fieldset>
+		<%= f.label :details, "Details:" %><br>
+		<%= f.text_area :details, :placeholder=> "all the other unmentioned details about the job", :required=> "true"%><br>
+	</fieldset><br>
+

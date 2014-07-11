@@ -37,14 +37,20 @@ class Job < ActiveRecord::Base
 									:experience,     #years
 									:qualification,  #degree
 									:details         #alot
-
+	#association
 	belongs_to :user
+	
+		email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i #[a-z0-9]@[a-z0-9].[a-z] & /i-case insensitive
+	
+	#format:{rails4} is the new rails 4 way but :format=>{rails3} still works.
+	validates :contact_email, format: {with: email_regex}
 	validates_presence_of :title, :category, :location,
 												:vacancies, :company, :contact_phone,
 												:contact_email, :deadline, :job_description,
 												:job_type, :experience, :qualification, :details
 	validates :contact_phone, :length => {:maximum=>13, :minimum=>10}
 	validates :experience, :length => {:maximum=>2, :minimum=>1}
+	validates :job_description, :length => {:maximum=>160}
 	# 'only_integer' uses regx: /\A[+-]?\d+\Z/
 	validates_numericality_of :contact_phone, :experience, :only_integer => true
 	

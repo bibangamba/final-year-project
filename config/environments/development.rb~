@@ -28,7 +28,8 @@ StaticDynamic::Application.configure do
   config.assets.debug = true
   
   #added so urls can work in mailer. shd b added 2 prdn too bt wth cstm domn instd
-  config.action_mailer.default_url_options = {:host => "localhost:8080"}
+  config.action_mailer.default_url_options = {:host => "localhost"}
+  
   
   #for downloading files(using send file) directly from drive(faster)
   config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache

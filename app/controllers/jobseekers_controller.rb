@@ -34,8 +34,8 @@ class JobseekersController < ApplicationController
 	end
 	
 	def new
-    @jobseeker = current_user.build_jobseeker(:user_id => params[:id])
-  	@title = "Creae Your Profile"
+    @jobseeker = current_user.build_jobseeker
+  	@title = "Create Your Profile"
 	end
 	
 	#allows creation of jobseeker details on signup/posting them

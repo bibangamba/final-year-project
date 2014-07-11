@@ -1,10 +1,10 @@
 <h1>Post a job</h1>
 
-<%= form_for(@jobseeker) do |f| %>
-	<%= render 'shared/profile_fields', :f => f %><br><br><br><br>
+<%= form_for(@job) do |f| %>
+	<%= render 'job_fields', :f => f %><br><br><br><br>
 	<fieldset>
 	<div class="actions">
-		<%= f.submit "Update Profile", :id=>"update_profile_btn" %>
+		<%= f.submit "Post Job", :id=>"update_profile_btn" %>
 	</div>
 	</fieldset>
 <% end %>

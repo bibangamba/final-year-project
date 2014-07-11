@@ -34,8 +34,8 @@ class JobseekersController < ApplicationController
 	end
 	
 	def new
-    @jobseeker = current_user.build_jobseeker(:user_id => params[:id])
-  	@title = "Creae Your Profile"
+    @jobseeker = current_user.build_jobseeker
+  	@title = "Create Your Profile"
 	end
 	
 	#allows creation of jobseeker details on signup/posting them
@@ -63,7 +63,7 @@ class JobseekersController < ApplicationController
 			@title = "Edit Profile"
 		else
 			flash[:notice] = "we don't have your profile yet, create one!"
-			#don't use render 'new' because it refers to @jobseeker from this action(and in this section of action, its nil)
+			#don't use render 'new' because it refers to @jobseeker from this action(and in this section of action, its nil.)
 			redirect_to new_jobseeker_path
 		end
 		
