@@ -4,6 +4,3 @@ require File.expand_path('../application', __FILE__)
 # Initialize the Rails application.
 StaticDynamic::Application.initialize!
 
-
-#for urls to work in mailer
-config.action_mailer.default_url_options = {:host => "localhost:8080"}
