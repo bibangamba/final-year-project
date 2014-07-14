@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
 	#:dependent option deletes all microposts associated with the destroyed user
 	has_one :jobseeker, :foreign_key => "user_id", :dependent => :destroy
-	has_one :job, :foreign_key => "employer_id", :dependent=>:destroy
+	has_many :job, :foreign_key => "employer_id", :dependent=>:destroy
 	
 	
 	

@@ -295,8 +295,12 @@ input[type="submit"] {
 /*end: signin styling*/
 
 /*Edit profile page*/	
-#update_profile_btn{
+#update_profile_btn, #update_job_btn{
 	background-color: #F79D17;
+}
+
+#post_job{
+	background-color: #49BE16;
 }
 
 

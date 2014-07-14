@@ -1,4 +1,4 @@
-<h1>Edit job</h1>
+<h1> the job</h1>
 
 <%= form_for(@job) do |f| %>
 	<%= render 'job_fields', :f => f %><br><br><br><br>

@@ -1,0 +1,10 @@
+		<li>
+			<%#= gravatar_for user, :size => 30 %>
+			<%#= link_to user.first_name, user %>
+			
+			<%= link_to job.title, job %>
+			<% if current_user %>
+				| <%= link_to "Edit", edit_job_path(job.id) %>
+				| <%= link_to "Delete", job, method: :delete, confirm: "Delete #{job.title} job.\n \t\t\t You sure?", :title =>"Delete #{job.title}" %> 
+			<% end %>
+		</li>

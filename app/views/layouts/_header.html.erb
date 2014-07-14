@@ -15,8 +15,7 @@
 					<li><%= link_to "Edit Profile", edit_jobseeker_path(current_user) %></li>
 				<%elsif current_user.role=="employer"%>
 					<li><%= link_to "Post Job", new_job_path %></li>				
-					<li><%= link_to "Posted Jobs", jobs_path %></li>
-					<li><%= link_to "Edit Job", edit_job_path %></li>
+					<li><%= link_to "Posted Jobs", jobs_path %></li>					
 				<% end %>
 				
 				<li><%= link_to "Settings", edit_user_path(current_user) %></li>
