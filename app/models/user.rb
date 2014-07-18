@@ -85,27 +85,6 @@ class User < ActiveRecord::Base
 		(user && user.salt == cookie_salt) ? user : nil
 	end
 	
-	#following boolean mthd to check if a user is being followed
-	#in the case of '.._id(followed)'=> the '.id' can be removed but if it breaks, add it
-	def following?(followed)
-		relationships.find_by_followed_id(followed)
-	end
-	
-	#creates a relationship and shows exceptions
-	#in this case, followed alone breaks so we add '.id'
-	def follow!(followed)
-		relationships.create!(:followed_id => followed.id)
-	end
-	
-	def unfollow!(followed)
-		relationships.find_by_followed_id(followed).destroy
-	end
-	
-	#micropost feed method
-	def feed
-		Micropost.from_users_followed_by(self)
-	end
-	
 	
 	#pswd reset instrctns sndng mthd
 	def send_password_reset
@@ -127,14 +106,18 @@ class User < ActiveRecord::Base
 
 #self is not optional when assigning an attr(self.encry...)however when u call an attribute, its presence is optional[(pass..)]
 		def encrypt_password
+		
 			self.salt = make_salt if new_record? #new_record? is an active_record boolean mthd(checks if object hasn't been saved to the db yet) so it doesn't change on updating a user
+			
 			self.encrypted_password = encrypt(password)
 		end
 		
+		#method encrypts password or any string passed to it.
 		def encrypt(string)
 			secure_hash("#{salt}--#{string}")
 		end
 		
+		#use current time and passwordto make the salt
 		def make_salt
 			secure_hash("#{Time.now.utc}--#{password}")
 		end

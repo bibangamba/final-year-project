@@ -12,7 +12,6 @@
 #  company         :string(255)
 #  contact_phone   :string(255)
 #  contact_email   :string(255)
-#  post_date       :date
 #  deadline        :datetime
 #  job_type        :string(255)
 #  experience      :integer
@@ -20,6 +19,9 @@
 #  details         :text
 #  created_at      :datetime
 #  updated_at      :datetime
+#  min_age         :string(255)
+#  max_age         :string(255)
+#  requirements    :text
 #
 
 class Job < ActiveRecord::Base
@@ -36,7 +38,10 @@ class Job < ActiveRecord::Base
 									:job_type,       #intern, fulltime
 									:experience,     #years
 									:qualification,  #degree
-									:details         #alot
+									:min_age,
+									:max_age,
+									:requirements,  #requirements
+									:details        #responsibilities
 	#association
 	belongs_to :user
 	
@@ -52,7 +57,8 @@ class Job < ActiveRecord::Base
 	validates :experience, :length => {:maximum=>2, :minimum=>1}
 	validates :job_description, :length => {:maximum=>160}
 	# 'only_integer' uses regx: /\A[+-]?\d+\Z/
-	validates_numericality_of :contact_phone, :experience, :only_integer => true
+	validates_length_of :max_age, :min_age, :length => {:is=>2}#15-80
+	validates_numericality_of :contact_phone, :experience, :min_age, :max_age, :only_integer => true
 	
 
 end

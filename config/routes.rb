@@ -3,6 +3,9 @@ StaticDynamic::Application.routes.draw do
   #get "password_resets/new" #we make it a rsrc instd
   get "sessions/new"
 	#allows REST-like urls for users to work(create, new, destroy etc actions)
+
+
+	post 'users/mobile'
 	resources :users do
 	#members allows a users/:id/following||followers sort of route
 	#collection(in place of members) allows for users/:collection_get_page(e.g following for the members case) i.e w/ out an :id
@@ -37,6 +40,7 @@ StaticDynamic::Application.routes.draw do
 	
 	get 'jobseekers/download_cv'
 	get 'jobseekers/view_cv'
+	
 	
 	root :to => 'pages#home'
   

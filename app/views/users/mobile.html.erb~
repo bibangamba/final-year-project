@@ -1,0 +1,4 @@
+<%= @response %><br>
+<%= @email %><br>
+<%= @password %><br><br>
+

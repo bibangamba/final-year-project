@@ -12,7 +12,6 @@
 #  company         :string(255)
 #  contact_phone   :string(255)
 #  contact_email   :string(255)
-#  post_date       :date
 #  deadline        :datetime
 #  job_type        :string(255)
 #  experience      :integer
@@ -20,6 +19,9 @@
 #  details         :text
 #  created_at      :datetime
 #  updated_at      :datetime
+#  min_age         :string(255)
+#  max_age         :string(255)
+#  requirements    :text
 #
 
 require 'spec_helper'

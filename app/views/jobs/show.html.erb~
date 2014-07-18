@@ -18,5 +18,5 @@
 		<h2><u>Responsibilities to be held</u></h2>
 		<h4>
 		<%= @job.details %>
-		</h4><br>
+		</h4>
 </div>

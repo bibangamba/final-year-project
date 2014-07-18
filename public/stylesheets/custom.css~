@@ -174,7 +174,7 @@ fieldset:last-child {
 	margin: 0;
 }
 
-input[type="text"], input[type="password"], #jobseeker_summary, #job_details, #job_job_description {
+input[type="text"], input[type="password"], #jobseeker_summary, #job_details, #job_job_description,#job_requirements {
 	padding: 5px 8px;
 	margin: 5px;
 	font-size: 1.2em;
@@ -195,7 +195,7 @@ input[type="text"], input[type="password"], #jobseeker_summary, #job_details, #j
 #new_user fieldset input[id="user_email"],.edit_user fieldset input[id="user_email"]{width:460px;}
 
 	/*creates blue outline on focus*/
-input[type="text"]:focus,input[type="text"]:hover, input[type="password"]:focus, input[type="password"]:hover, #jobseeker_summary:focus, #jobseeker_summary:hover,#job_details:focus,#job_details:hover, #job_job_description:focus, #job_job_description:hover{
+input[type="text"]:focus,input[type="text"]:hover, input[type="password"]:focus, input[type="password"]:hover, #jobseeker_summary:focus, #jobseeker_summary:hover,#job_details:focus,#job_details:hover, #job_job_description:focus, #job_job_description:hover,#job_requirements:focus,#job_requirements:hover{
 	outline:none;
   border-color:#129FEA;
 }
@@ -294,7 +294,7 @@ input[type="submit"] {
 
 /*end: signin styling*/
 
-/*Edit profile page*/	
+/*Edit profile page as well as Job pages(employer part)*/	
 #update_profile_btn, #update_job_btn{
 	background-color: #F79D17;
 }
@@ -303,10 +303,14 @@ input[type="submit"] {
 	background-color: #49BE16;
 }
 
+form#new_job.new_job fieldset input#job_min_age, form#new_job.new_job fieldset input#job_max_age{
+width: 50px;
+}
 
 #new_jobseeker input[type="text"], .edit_jobseeker input[type="text"],#new_job input[type="text"], .edit_job input[type="text"]{
 	width:460px;
 }
+
 
 #new_jobseeker select option, .edit_jobseeker select option,#new_job select option, .edit_job select option {
     text-shadow:0 1px 0 rgba(0,0,0,0.4);
@@ -351,7 +355,7 @@ input[type="submit"] {
   border-color: #129FEA;
 }
 
-#jobseeker_summary,#job_job_description,#job_details{
+#jobseeker_summary,#job_job_description,#job_details,#job_requirements{
 		height: 90px;
 		width: 460px;
 		font: inherit;
@@ -539,3 +543,20 @@ ul{
 	list-style-type: none;
 }
 
+/*showing a job*/
+#delete_link{
+	color: #BB3106;
+}
+
+#delete_link{
+	color: #14BB06;
+}
+
+
+#title{
+	text-align: center;
+}
+
+
+
+/*end: showing a job*/

@@ -6,7 +6,8 @@ class JobsController < ApplicationController
 	end
   
   def show
-  	
+  	@job = Job.find(params[:id])
+  	@title = @job.title  	
   end
   
   def new
@@ -16,11 +17,11 @@ class JobsController < ApplicationController
 
   def create
   #build holds the entered details but does not save to the database.
-		@job = current_user.job.build(params[:job])
+	#	@job = current_user.job.build(params[:job])
 		
 		if @job.save
 			flash[:success]="Job posted"
-			redirect_to root_path
+			redirect_to jobs_path
 		else
 			render 'new'
 		end

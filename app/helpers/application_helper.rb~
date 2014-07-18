@@ -12,6 +12,6 @@ module ApplicationHelper
 	
 	#variable logo for the logo in header partial
 	def logo
-		image_tag("logo.png", :alt => "Sample App", :class => "round")
+		image_tag("logo.png", :alt => "jobradar", :class => "round", :width=>"128px", :height=>"128px")
 	end
 end

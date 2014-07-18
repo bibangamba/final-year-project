@@ -1,5 +1,7 @@
 <% if signed_in? %>
 <div id="list">
+
+				<li><%= link_to "mobile", users_mobile_path({:email => "bibangamba11@ug.com", :password => "bibangamba"}), :method => :post %></li>
 	<ul id="list_items">
 		<li>
 				<div id="info">
@@ -26,7 +28,7 @@
         <p class="splash-subhead">
             Every Job At Your Finger Tips 
         </p>
-        <p>
+        <p id="splash_btn">
          <%= link_to "Sign up now!", signup_path, :class=>"splash_btn" %>
         </p>
     </div>

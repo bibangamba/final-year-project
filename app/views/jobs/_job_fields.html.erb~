@@ -47,7 +47,7 @@
 	</fieldset><br>
 	
 	<fieldset>
-		<%= f.label :deadline, "Closing date:" %><br>
+		<%= f.label :deadline, "Closing date and time:" %><br>
 		<%= f.text_field :deadline, :placeholder=> "last date for recieving applications for the job", :required=> "true"%>
 	</fieldset><br>
 
@@ -65,6 +65,11 @@
 	</fieldset><br>
 	
 	<fieldset>
+		<%= f.label :age, "Age between:" %><br>
+		<%= f.text_field :min_age, :placeholder=> "min", :width=>"100px"%> <b>&</b> <%= f.text_field :max_age, :placeholder=> "max", :width=>"100px"%>
+	</fieldset><br>
+	
+	<fieldset>
 
 		<% @type = [['None', 'None'],['Internship', 'Internship'],['Volunteer', 'Volunteer'],['Freelance', 'Freelance'],['Part-time', 'Part-time'],['Full-time', 'Full-time']] %>
 		
@@ -73,7 +78,12 @@
 	</fieldset><br>
 		
 	<fieldset>
-		<%= f.label :details, "Details:" %><br>
-		<%= f.text_area :details, :placeholder=> "all the other unmentioned details about the job", :required=> "true"%><br>
+		<%= f.label :requirements, "Other Requirements:" %><br>
+		<%= f.text_area :requirements, :placeholder=> "like hardworking, good leadership skills e.t.c. if you don't have any, just type: None", :required=> "true"%><br>
+	</fieldset><br><br><br><br>
+
+	<fieldset>
+		<%= f.label :details, "Duties and Responsibilities:" %><br>
+		<%= f.text_area :details, :placeholder=> "duties and responsibilities like, reporting to the manager, training staff e.t.c. if you don't have any, type: None", :required=> "true"%><br>
 	</fieldset><br>
 

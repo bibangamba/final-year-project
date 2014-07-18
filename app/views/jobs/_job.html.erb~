@@ -1,10 +1,11 @@
 		<li>
 			<%#= gravatar_for user, :size => 30 %>
 			<%#= link_to user.first_name, user %>
-			
+			<h4>
 			<%= link_to job.title, job %>
 			<% if current_user %>
-				| <%= link_to "Edit", edit_job_path(job.id) %>
-				| <%= link_to "Delete", job, method: :delete, confirm: "Delete #{job.title} job.\n \t\t\t You sure?", :title =>"Delete #{job.title}" %> 
+				| <%= link_to "Edit", edit_job_path(job.id), :id=>"delete_link", :title =>"Edit #{job.title}" %>
+				| <%= link_to "Delete", job, :id=>"delete_link", method: :delete, confirm: "Delete #{job.title} job.\n \t\t You sure?", :title =>"Delete #{job.title}" %> 
 			<% end %>
+			</h4>
 		</li>

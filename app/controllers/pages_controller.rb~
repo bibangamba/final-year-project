@@ -8,13 +8,6 @@ class PagesController < ApplicationController
 			@feed_items = current_user.feed.paginate(:page => params[:page])
 		end
   end
-  
-  #when the profile is new
-  def profile
-    @jobseeker = current_user.build_jobseeker
-  	@title = "Creae Your Profile"
-  end
-  
 
   def contact
   	@title = "Contact"
