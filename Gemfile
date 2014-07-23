@@ -78,6 +78,8 @@ end
 
 # Use unicorn as the app server
  gem 'unicorn'
+
+#use populator to add fake data to database
  
 #server i want to use in testing ssl
  gem 'thin'

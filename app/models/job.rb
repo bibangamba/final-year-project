@@ -26,6 +26,8 @@
 
 class Job < ActiveRecord::Base
 
+
+	#makes it available to via the web interface
 	attr_accessible :title,          #name of the job
 									:category,       #computer, admin
 									:location,       #gulu, kampala
@@ -57,7 +59,9 @@ class Job < ActiveRecord::Base
 	validates :experience, :length => {:maximum=>2, :minimum=>1}
 	validates :job_description, :length => {:maximum=>160}
 	# 'only_integer' uses regx: /\A[+-]?\d+\Z/
-	validates_length_of :max_age, :min_age, :is=>2#15-80
+	#validates_length_of :max_age, :min_age, :is=>2#15-65
+	validates :min_age, :numericality => { :greater_than => 17, :less_than_or_equal_to => 30 }
+	validates :max_age, :numericality => { :greater_than => 30, :less_than_or_equal_to => 65 }
 	validates_numericality_of :contact_phone, :experience, :min_age, :max_age, :only_integer => true
 	
 

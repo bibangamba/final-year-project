@@ -5,14 +5,14 @@
 	
 	<fieldset>
 	<%= label_tag(:dob, "Birthday:") %><br>
-	<div class="select_border" ><%= f.date_select(:dob,:start_year => Date.current.year, :end_year => 1939) %></div>
+	<div class="select_border" ><%= f.date_select(:dob,:start_year => Date.current.year - 18, :end_year => 1939) %></div>
 	</fieldset><br>
 	
 	<fieldset>
 	<div class="actions">
     
     <%= f.label :sex, "Gender:" %><br>
-    <%= f.radio_button :sex, "Female",:required=>"required" %>
+    <%= f.radio_button :sex, "female",:required=>"required" %>
     <%= f.label :sex, "Female", :value=>"female",:id=>"label_roles" %>
     <%= f.radio_button :sex, "male",:required=>"required" %>
     <%= f.label :sex, "Male", :value=>"male",:id=>"label_roles" %>

@@ -1,0 +1,8 @@
+
+<ul class="jobs">
+	<li>
+		<h4>
+			<%= link_to @job.first, @job %>			
+		</h4>
+	</li>
+</ul>

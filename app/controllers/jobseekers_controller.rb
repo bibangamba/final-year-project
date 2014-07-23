@@ -40,6 +40,8 @@ class JobseekersController < ApplicationController
 	
 	#allows creation of jobseeker details on signup/posting them
 	def create
+		@user = current_user#use it for naming the cv
+		
 		#build holds the entered details but does not save to the database.
 		@jobseeker = current_user.build_jobseeker(params[:jobseeker])
 		upload_cv
@@ -71,6 +73,7 @@ class JobseekersController < ApplicationController
 	
 	#for updating attributes
 	def update
+		@user = current_user#use it for naming the cv
 		@jobseeker = Jobseeker.find(params[:id])
 		upload_cv
 		
@@ -99,7 +102,7 @@ class JobseekersController < ApplicationController
 			#save it if the type is pdf
 			if @type == "application/pdf"
 				
-				File.open(Rails.root.join('public', 'uploads', @jobseeker.id.to_s), 'wb') do |file|
+				File.open(Rails.root.join('public', 'uploads', @user.id.to_s), 'wb') do |file|
 						file.write(uploaded_io.read)
 				end
 				

@@ -49,7 +49,11 @@ class UsersController < ApplicationController
 			sign_in @user #signs in the signed up user
 			flash[:success] = "Hi #{@user.first_name}, welcome to JobRadar. "
 			#redirect_to @user
-			redirect_to new_jobseeker_path
+			if @user.role== "jobseeker"
+				redirect_to new_jobseeker_path
+			elsif @user.role=="employer"
+				redirect_to new_job_path
+			end
 		else
 			@title = "Sign up"
 			render 'new'
@@ -98,8 +102,9 @@ class UsersController < ApplicationController
 			firstname = @user.first_name
 			username = @user.last_name
 			role = @user.role
+			id = @user.id
 
-			request = {"success" => 1, "message" => "Authenticated.", "user" => "#{username}", "first_name" => "#{firstname}", "role" => "#{role}"}
+			request = {"success" => 1, "message" => "Authenticated.", "user" => "#{username}", "first_name" => "#{firstname}", "role" => "#{role}", "id" => "#{id}"}
 		end
 		
 		render :json => request#renders json as reply

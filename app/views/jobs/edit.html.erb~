@@ -1,6 +1,6 @@
-<h1> the job</h1>
+<h1>Edit job</h1>
 
-<%= form_for(@job) do |f| %>
+<%= form_for(@job) do |f| ,:class=>""%>
 	<%= render 'job_fields', :f => f %><br><br><br><br>
 	<fieldset>
 	<div class="actions">

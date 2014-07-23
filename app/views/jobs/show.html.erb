@@ -1,13 +1,20 @@
 <div id="job_info">
-	<div id="title" > <h1><%= @job.title %> needed in <%= @job.location %> </h1> </div>
+	<div id="title" > 
+		<h1><%= @job.title %> needed in <%= @job.location %> </h1>
+		<h3><i><%= @job.job_description %></i></h3>
+	</div>
 		<h2><u>Main requirements/constraints</u></h2>
 		<h4>
 			Location: <%= @job.location %><br>
-			Experience: <%= @job.experience %><br>
+			Experience required: <%= @job.experience %><br>
 			Minimum qualification: <%= @job.qualification %><br>
-			Age range: <% @job %> to <% @job %><br>
+			Age range: <%= @job.min_age %> to <%= @job.max_age %><br>
 			Deadline: <%= @job.deadline %><br>
 			Employment type: <%= @job.job_type %><br>
+			Company: <%= @job.company %><br>
+			Category: <%= @job.category %><br>
+			Job Type: <%= @job.job_type %><br>
+			Vacancies available: <%= @job.vacancies %><br>
 		</h4><br>
 	
 		<h2><u>Other requirements/constraints</u></h2>

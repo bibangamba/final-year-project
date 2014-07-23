@@ -1,9 +1,14 @@
-<h1>Jobs you have posted</h1>
+<h1>
+<%= gravatar_for current_user, :size => 30 %>
+<%= link_to current_user.first_name, current_user %>
+,these are jobs you've posted.
+</h1><br>
 
-<%= will_paginate %>
+
+<%#= will_paginate %> <%#pagination doesn't work on arrays(@jobs) so its commented out%>
 
 <ul class="jobs">
-	<%= render @users %>
+	<%= render @jobs %>
 </ul>
 
-<%= will_paginate %>
+<%#= will_paginate %>

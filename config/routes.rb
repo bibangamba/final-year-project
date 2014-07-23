@@ -6,6 +6,7 @@ StaticDynamic::Application.routes.draw do
 
 
 	post 'users/mobile'
+	
 	resources :users do
 	#members allows a users/:id/following||followers sort of route
 	#collection(in place of members) allows for users/:collection_get_page(e.g following for the members case) i.e w/ out an :id
@@ -20,6 +21,8 @@ StaticDynamic::Application.routes.draw do
 	resources :relationships, :only => [:create, :destroy]  
 	resources :password_resets
 	resources :jobseekers
+	
+	post 'jobs/mobile'
 	resources :jobs
 	  
   #get "users/new" #no longer needed since the resources line above automatically adds these paths(is RESTful Users resource)

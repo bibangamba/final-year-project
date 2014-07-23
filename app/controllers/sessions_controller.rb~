@@ -18,9 +18,12 @@ class SessionsController < ApplicationController
   	  	
   	#sign_in & redirect_back_or methods are in sessions_helper.rb(for universal access by controllers)
   		sign_in user
-  		
+  		if user.role == "Jobseeker"
   		#on sign in, redirects you to the home page
-			redirect_back_or home_path
+			redirect_back_or pages_home_path
+			elsif user.role == "Employer"
+				redirect_to new_job_path
+			end
 			
   	end
   end

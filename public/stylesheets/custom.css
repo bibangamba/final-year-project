@@ -277,7 +277,7 @@ input[type="submit"] {
     border-radius: 5px;
 }
 
-#signup_btn{
+#signup_btn, #search_btn{
 	font-size: 20px;
 	background-color: #49BE16;
 	width: 150px;
@@ -299,11 +299,17 @@ input[type="submit"] {
 	background-color: #F79D17;
 }
 
+input#search{
+	height: 30px;
+	width: 250px;
+}
+
 #post_job{
 	background-color: #49BE16;
 }
 
-form#new_job.new_job fieldset input#job_min_age, form#new_job.new_job fieldset input#job_max_age{
+form#new_job.new_job fieldset input#job_min_age, form#new_job.new_job fieldset input#job_max_age, 
+.edit_job fieldset input#max_age, .edit_job fieldset input#min_age{
 width: 50px;
 }
 
@@ -534,13 +540,19 @@ hr {
     border: 0;
     height: 1px;
     background: #333;
-    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc); 
-    background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc); 
-    background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc); 
-    background-image:      -o-linear-gradient(left, #ccc, #333, #ccc); 
+    background-image: -webkit-linear-gradient(left, #858585, #858585, #858585); 
+    background-image:    -moz-linear-gradient(left, #858585, #858585, #858585); 
+    background-image:     -ms-linear-gradient(left, #858585, #858585, #858585); 
+    background-image:      -o-linear-gradient(left, #858585, #858585, #858585); 
 }
 ul{
-	list-style-type: none;
+	list-style-type: none;	
+}
+
+.container .round div ul{
+	width: 500px;
+	margin-left: 20px;
+	margin-top: 10px;
 }
 
 /*showing a job*/
@@ -555,6 +567,15 @@ ul{
 
 #title{
 	text-align: center;
+}
+
+.dets{
+	display:inline-block;
+	font-size:15px;
+}
+
+div ul li div h4 hr{
+	width:420px;
 }
 
 

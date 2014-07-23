@@ -1,26 +1,74 @@
 <% if signed_in? %>
+	<% if current_user.role == "jobseeker" %>
+		<%#
+		<%#= form_tag jobs_path, :method=>'get' do %>
+		<%#	<p align="center">
+				<%= text_field_tag :search %>
+		<%#		<%= submit_tag "Search All", :id=>"search_btn", :name=>nil %>
+		<%#	</p> %>
+			
+			<div>
+			<h1>Available Jobs according to your profile</h1>
+				<%if @jobs%>
+					<ul>
+						<li>						
+							<% @jobs.each do |job|%>
+								<div>
+								<h4>
+								<%= link_to job.title, job %><h4>
+								<div class = "dets">
+								<%=job.job_type%> | <%= job.location %> | <%= job.deadline.to_date %>
+								</div>
+								<hr>
+								</div>
+							<% end %>
+						</li>
+					</ul>
+				<%elsif%>
+					<h1>Sorry, no job listing are available. Try editing your profile to get job new listings.</h1>
+				<%end%>
+			</div>
+		<%#<% end %>
+		
+	<% elsif current_user.role == "employer" %>
+		
+	<%#	<%= form_tag jobseekers_path, :method=>'get' do %>
+	<%#		<p align="center">
+	<%#			<%= text_field_tag :search %>
+	<%#			<%= submit_tag "Search All", :id=>"search_btn", :name=>nil %>
+	<%#		</p>
+	<%#	<% end %>
+		<div>
+			<h1>Job seekers that qualify for your posted jobs</h1>
+				<%if @seekers%>
+					<ul>
+						<li>
+						<h4>
+					<% @seekers.each do |details| %>
+						<% details.each do |detail| %>
+							<% @users = detail.user_id %>
+							<% @user = User.find(@users) %>
+							<% name1 = @user.first_name %>
+							 <% name2 = @user.last_name%>
+							<%= link_to "#{name1} #{name2}", user_path(detail.user_id) %><br>
+						<% end %>
+				<% end %>
+						</h4>
+						</li>
+					</ul>						
+				<%elsif%>
+					<h1>It seems we don't have any jobseekers that match, check back in a while... or post more jobs</h1>
+				<%end%>
+			</div>
+		
+	<% end %>
 <div id="list">
 
-				<li><%= link_to "mobile", users_mobile_path({:email => "bibangamba11@ug.com", :password => "bibangamba"}), :method => :post %></li>
+	
 	<ul id="list_items">
 		<li>
-				<div id="info">
-				<h2>car washer needed.</h2>
-				<h3>salary per hour:<i> UGX 2,000</i></h3>
-				<h3>location:<i> naguru </i></h3><h3>posted by:<i> mariam </i></h3>
-				</div>
-			<hr>
-
+			
 		</li>
-		<li>
-				<div id="info">
-				<h2>mechanic wanted</h2>
-				<h3>salary per month:<i> UGX 250,000</i></h3>
-				<h3>location:<i> wandegeya </i></h3><h3>posted by:<i> matovu </i></h3>
-				</div>
-			<hr>
-		</li>
-	</ul>
 </div>
 <% else %>
 	<div class="splash">
