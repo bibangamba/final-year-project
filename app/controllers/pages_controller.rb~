@@ -9,7 +9,7 @@ class PagesController < ApplicationController
 				@title = "Promising Jobs"
 				jobseeker = Jobseeker.find_by_user_id(current_user.id)
 				preferred_field = jobseeker.field
-				@jobs = Job.where('category IS ?', preferred_field)
+				@jobs = Job.where('category = ?', preferred_field)
 				
 			elsif current_user.role == "employer"
 				
@@ -19,7 +19,7 @@ class PagesController < ApplicationController
 					(@categories ||=[]) << jobs.category#get each posted jobs category and append it to categories array
 				end
 				
-				@category.each do |category|
+				@categories.each do |category|
 					(@seekers ||=[]) << Jobseeker.all(:conditions=>"field = '#{category}'")
 				end
 				
