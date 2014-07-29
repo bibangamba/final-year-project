@@ -8,21 +8,28 @@ class PagesController < ApplicationController
 				
 				@title = "Promising Jobs"
 				jobseeker = Jobseeker.find_by_user_id(current_user.id)
-				preferred_field = jobseeker.field
-				@jobs = Job.where('category = ?', preferred_field)
+				if jobseeker
+					preferred_field = jobseeker.field
+					@jobs = Job.where('category LIKE ?', preferred_field)
+				else
+					@jobs = nil
+				end
 				
 			elsif current_user.role == "employer"
 				
 				@title = "Jobseekers"								
 				posted_jobs = Job.find_all_by_employer_id(current_user)
-				posted_jobs.each do |jobs|
-					(@categories ||=[]) << jobs.category#get each posted jobs category and append it to categories array
-				end
+				if posted_jobs
+					posted_jobs.each do |jobs|
+						(@categories ||=[]) << jobs.category#get each posted jobs category and append it to categories array
+					end
 				
-				@categories.each do |category|
-					(@seekers ||=[]) << Jobseeker.all(:conditions=>"field = '#{category}'")
-				end
+					@categories.each do |category|
+						(@seekers ||=[]) << Jobseeker.all(:conditions=>"field = '#{category}'")
+					end
+				else
 				
+				end
 				#@seekers = Jobseeker.find(:all, limit: 20)				
 			end
 		end

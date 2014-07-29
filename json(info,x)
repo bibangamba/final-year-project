@@ -1,0 +1,10 @@
+= ..jjssoonn
+
+(from gem activerecord-4.0.0)
+=== IImmpplleemmeennttaattiioonn  ffrroomm  CCoolluummnnMMeetthhooddss
+------------------------------------------------------------------------------
+  json(name, options = {})
+
+------------------------------------------------------------------------------
+
+

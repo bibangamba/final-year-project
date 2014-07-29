@@ -5,7 +5,8 @@ StaticDynamic::Application.routes.draw do
 	#allows REST-like urls for users to work(create, new, destroy etc actions)
 
 
-	post 'users/mobile'
+	post 'users/mobile'	
+	post 'users/mobile_get'	
 	
 	resources :users do
 	#members allows a users/:id/following||followers sort of route
@@ -22,7 +23,8 @@ StaticDynamic::Application.routes.draw do
 	resources :password_resets
 	resources :jobseekers
 	
-	post 'jobs/mobile'
+	post 'jobs/mobile_post'
+	post 'jobs/mobile_get'
 	resources :jobs
 	  
   #get "users/new" #no longer needed since the resources line above automatically adds these paths(is RESTful Users resource)

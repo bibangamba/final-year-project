@@ -53,15 +53,15 @@ class Job < ActiveRecord::Base
 	validates :contact_email, format: {with: email_regex}
 	validates_presence_of :title, :category, :location,
 												:vacancies, :company, :contact_phone,
-												:contact_email, :deadline, :job_description,
+												:contact_email, :job_description,
 												:job_type, :experience, :qualification, :details
 	validates :contact_phone, :length => {:maximum=>13, :minimum=>10}
 	validates :experience, :length => {:maximum=>2, :minimum=>1}
 	validates :job_description, :length => {:maximum=>160}
 	# 'only_integer' uses regx: /\A[+-]?\d+\Z/
 	#validates_length_of :max_age, :min_age, :is=>2#15-65
-	validates :min_age, :numericality => { :greater_than => 17, :less_than_or_equal_to => 30 }
-	validates :max_age, :numericality => { :greater_than => 31, :less_than_or_equal_to => 65 }
+	#validates :min_age, :numericality => { :greater_than => 17, :less_than_or_equal_to => 30 }
+	#validates :max_age, :numericality => { :greater_than => 30, :less_than_or_equal_to => 65 }
 	validates_numericality_of :contact_phone, :experience, :min_age, :max_age, :only_integer => true
 	
 

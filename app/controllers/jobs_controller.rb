@@ -1,4 +1,7 @@
 class JobsController < ApplicationController
+
+  protect_from_forgery :except => [:mobile_post, :mobile_get]#excludes them from csrf
+  
   
 	def index
 		@title="Posted jobs"		
@@ -53,10 +56,10 @@ class JobsController < ApplicationController
   	redirect_to jobs_path
   end
   
-  def mobile
-  	@employer = params[:user]
+  def mobile_post
+  	@employer = params[:Employer_id]
   	@title = params[:Job_Tittle]
-  	@desc = params[:Job_desc]
+  	@desc = params[:Description]
   	@category = params[:Category]
   	@location = params[:Location]
   	@job_type = params[:Job_Type]
@@ -67,8 +70,8 @@ class JobsController < ApplicationController
   	@company = params[:Company]
   	@qualification = params[:Qualification]
   	@experience = params[:Experience]
-  	@max_age = params[:Max_age]
-  	@min_age = params[:Min_age]
+  	@max_age = "18"
+  	@min_age = "65"
   	@requirements = params[:Requirements]
   	@details = params[:Details]
   	
@@ -86,22 +89,49 @@ class JobsController < ApplicationController
   								:deadline=>@deadline,
   								:contact_phone=>@contact_phone,
   								:contact_email=>@contact_email,
-  								:company=>@@company,
+  								:company=>@company,
   								:qualification=>@qualification,
   								:experience=>@experience,
-  								:min_age=>@min_age,
-  								:max_age=>@max_age,
+  								:min_age=>@min_age.to_i,
+  								:max_age=>@max_age.to_i,
   								:requirements=>@requirements,
   								:details=>@details
   	)
 		
-		if @job.save
+		if @job.save!
 			response = {"Success" => "New Job Successfully Posted!!" }
 		else
 			response = {"error" => true, "Error" => "Failed to Post Job!"}
 		end
 		
 		render :json => response
+  end
+  
+  
+  
+  def mobile_get
+  	@last = params[:Last_job]
+  	@post_id = params[:Jobseeker]
+  	
+  	#get jobs for specific user  	
+  	jobseeker = Jobseeker.find_by_user_id(@post_id)
+		preferred_field = jobseeker.field#if no profile created yet, should have 'none' in the table(field column) so all or no jobs comes since there is no preferred job field
+		@jobs = Job.where('category LIKE ?', preferred_field)
+		
+  	if @last.to_i < 1
+  		@select = @jobs.all
+  		status = {"info" => @select}
+  	elsif @last.to_i < @jobs.last.id
+  		@select = @jobs.where("id >= ?", @post_id)
+  		status = {"info" => @select}
+  	elsif @last.to_i >= @jobs.last.id
+  		status = {"info" => "No updates"}
+  	end
+  	
+  	render :json => status
+  	
+  	
+  	
   end
   
 end

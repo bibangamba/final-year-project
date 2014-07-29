@@ -17,7 +17,7 @@
 								<h4>
 								<%= link_to job.title, job %><h4>
 								<div class = "dets">
-								<%=job.job_type%> | <%= job.location %> | <%= job.deadline.to_date %>
+								<%=job.job_type%> | <%= job.location %> | Deadline: <%= job.deadline.to_date %>
 								</div>
 								<hr>
 								</div>
@@ -25,7 +25,7 @@
 						</li>
 					</ul>
 				<%elsif%>
-					<h1>Sorry, no job listing are available. Try editing your profile to get job new listings.</h1>
+					<h1>Sorry, no jobs listing available. Try editing your profile to get a new jobs listing.</h1>
 				<%end%>
 			</div>
 		<%#<% end %>
@@ -39,6 +39,8 @@
 	<%#		</p>
 	<%#	<% end %>
 		<div>
+		
+		<%= link_to "mobileget", users_mobile_get_path(:Last_user => 0, :Employer => 3 ), :method => 'post'%><br>
 			<h1>Job seekers that qualify for your posted jobs</h1>
 				<%if @seekers%>
 					<ul>
@@ -56,8 +58,8 @@
 						</h4>
 						</li>
 					</ul>						
-				<%elsif%>
-					<h1>It seems we don't have any jobseekers that match, check back in a while... or post more jobs</h1>
+				<%else%>
+					<h1>It seems we don't have any jobseekers that match, check back in a while... or post some jobs if you haven't already</h1>
 				<%end%>
 			</div>
 		

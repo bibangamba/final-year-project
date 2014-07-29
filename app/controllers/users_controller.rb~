@@ -5,12 +5,13 @@ class UsersController < ApplicationController
 	#also, by default b4_filter applies to all actions in the controller, ':only' restricts it to those specified.
 	#:authenticate->must be signed in, :correct_user->must be the current user, :admin_user-> must be an admin, 
 	#:not_signed_in->must be signed out to access, :
-	before_filter :authenticate, :except =>[:show, :new, :create,:mobile]
+	before_filter :authenticate, :except =>[:show, :new, :create,:mobile, :mobile_get]
 	before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
   before_filter :not_signed_in, :only => [:new, :create]
   #prevent rails from doing csrf check on login from mobile
-  protect_from_forgery :except => :mobile
+  
+  protect_from_forgery :except => [:mobile, :mobile_get]
   
   def index
 		@title = "All users"
@@ -104,7 +105,7 @@ class UsersController < ApplicationController
 			role = @user.role
 			id = @user.id
 
-			request = {"success" => 1, "message" => "Authenticated.", "user" => "#{username}", "first_name" => "#{firstname}", "role" => "#{role}"}
+			request = {"success" => 1, "message" => "Authenticated.", "user" => "#{username}", "first_name" => "#{firstname}", "role" => "#{role}", "id" => "#{id}"}
 		end
 		
 		render :json => request#renders json as reply
@@ -112,6 +113,51 @@ class UsersController < ApplicationController
 		#format.json  { render :json => request } # don't do msg.to_json
 		#@response = request.to_json
 		
+	end
+	
+	def mobile_get
+		@last = params[:Last_user]
+  	@post_id = params[:Employer]
+		
+		posted_jobs = Job.find_all_by_employer_id(@post_id)
+		posted_jobs.each do |jobs|
+			(@categories ||=[]) << jobs.category#get each posted jobs category and append it to categories array
+		end
+		
+		#removing duplicate categories
+		@categories = @categories.uniq		
+		
+		@seekers = Jobseeker.where(:field => @categories).all		
+#User.find_by_sql("SELECT first_name,dob FROM users INNER JOIN jobseekers ON users.id = jobseekers.user_id WHERE users.id = '1'")
+#
+
+		@seekers.each do |jobseeker|
+			(@ids ||=[]) << jobseeker.user_id
+		end
+		
+		@user = User.where(:id => @ids)
+		
+
+=begin
+				
+		@categories.each do |category|
+			(@seekers ||=[]) << Jobseeker.find_all_by_field(@categories)#all(:conditions=>"field = '#{category}'")
+		end
+
+=end			
+			if @last.to_i < 1
+				@jobseekers = User.select("*").joins(:jobseeker).where(:user_id => @ids)#.to_json
+				status = {"info" => @jobseekers}
+			elsif @last.to_i < @user.last.id
+				@jobseekers = User.select("*").joins(:jobseeker).where("users.id >= #{@last}")#.to_json
+				status = {"info" => @jobseekers}
+			elsif @last.to_i >= @user.last.id
+				status = {"info" => "No updates"}
+			end
+
+  	
+  	render :json => status							
+		 
 	end
 	
 	private
