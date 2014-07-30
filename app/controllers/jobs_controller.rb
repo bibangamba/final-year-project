@@ -5,7 +5,8 @@ class JobsController < ApplicationController
   
 	def index
 		@title="Posted jobs"		
-		@jobs = Job.find_all_by_employer_id(current_user.id)		
+		#@jobs = Job.find_all_by_employer_id(current_user.id)#deprecated?basically heroku returns an error on running it like this
+		@jobs = Job.where(:employer_id => current_user.id)		
 		#@jobs.paginate(:page => params[:page])
 	end
   
@@ -64,14 +65,14 @@ class JobsController < ApplicationController
   	@location = params[:Location]
   	@job_type = params[:Job_Type]
   	@vacancies = params[:Vacancies]
-  	@deadline = params[:Deadline]
+  	@deadline = params[:DeadLine]
   	@contact_phone = params[:Contact_phone]
   	@contact_email = params[:Contact_email]
   	@company = params[:Company]
   	@qualification = params[:Qualification]
   	@experience = params[:Experience]
-  	@max_age = "18"
-  	@min_age = "65"
+  	@max_age = params[:Max]
+  	@min_age = params[:Min]
   	@requirements = params[:Requirements]
   	@details = params[:Details]
   	
@@ -100,8 +101,10 @@ class JobsController < ApplicationController
 		
 		if @job.save!
 			response = {"Success" => "New Job Successfully Posted!!" }
+			response = {"info" => "New Job Successfully Posted!!" }
 		else
 			response = {"error" => true, "Error" => "Failed to Post Job!"}
+			response = {"info" => "Failed to Post Job!" }
 		end
 		
 		render :json => response
