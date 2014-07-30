@@ -1,6 +1,6 @@
 class ChangeEmpoyerIdToInteger < ActiveRecord::Migration
   def change
-	  change_column :job, :employer_id, :integer
-	  change_column :job, :deadline, :date
+	  change_column :jobs, :employer_id, :integer,'integer USING CAST(employer_id AS integer)'
+	  change_column :jobs, :deadline, :date
   end
 end
