@@ -20,7 +20,7 @@ class PagesController < ApplicationController
 				
 				@title = "Jobseekers"								
 				#posted_jobs = Job.find_all_by_employer_id(current_user)
-				posted_jobs = Job.where('employer_id = ?', current_user.id.to_s).all
+				posted_jobs = Job.where('employer_id = ?', current_user.id).all
 				if posted_jobs
 					posted_jobs.each do |jobs|
 						(@categories ||=[]) << jobs.category#get each posted jobs category and append it to categories array
