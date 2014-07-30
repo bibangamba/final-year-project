@@ -30,7 +30,7 @@ class PagesController < ApplicationController
 						(@seekers ||=[]) << Jobseeker.all(:conditions=>"field = '#{category}'")
 					end
 				else
-					@seekers = nil
+					@seekers = Jobseeker.all
 					flash[:notice] = "Because you have no jobs posted, we are showing you all jobseekers."
 				end
 				#@seekers = Jobseeker.find(:all, limit: 20)				
