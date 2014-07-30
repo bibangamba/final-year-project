@@ -31,7 +31,7 @@ class PagesController < ApplicationController
 					end
 				else
 					flash[:notice] = "Because you have no jobs posted, we are showing you all jobseekers."
-					@seekers ||=[]) Jobseeker.all					
+					(@seekers ||=[]) Jobseeker.all					
 				end
 				#@seekers = Jobseeker.find(:all, limit: 20)				
 			end
