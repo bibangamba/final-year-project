@@ -6,7 +6,7 @@ class JobsController < ApplicationController
 	def index
 		@title="Posted jobs"		
 		#@jobs = Job.find_all_by_employer_id(current_user.id)#deprecated?basically heroku returns an error on running it like this
-		@jobs = Job.where(:employer_id => current_user.id)		
+		@jobs = Job.where(:employer_id => current_user.id).all		
 		#@jobs.paginate(:page => params[:page])
 	end
   
@@ -118,6 +118,9 @@ class JobsController < ApplicationController
   	
   	#get jobs for specific user  	
   	jobseeker = Jobseeker.find_by_user_id(@post_id)
+  	
+  	if jobseeker #if thier profile is filled
+  	
 		preferred_field = jobseeker.field#if no profile created yet, should have 'none' in the table(field column) so all or no jobs comes since there is no preferred job field
 		@jobs = Job.where('category LIKE ?', preferred_field)
 		
@@ -129,6 +132,11 @@ class JobsController < ApplicationController
   		status = {"info" => @select}
   	elsif @last.to_i >= @jobs.last.id
   		status = {"info" => "No updates"}
+  	end
+  	
+  	else #if no profile, push all jobs
+  		@jobs = Job.all
+  		status = {"info" => @jobs}
   	end
   	
   	render :json => status
